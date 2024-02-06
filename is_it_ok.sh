@@ -9,7 +9,7 @@
 #   - detaily prubehu jsou logovany do souboru is_it_ok.log v adresari testdir
 
 # Autor: Zbynek Krivka
-# Verze: 1.5.6 (2023-04-08)
+# Verze: 1.5.7 (2024-02-06)
 #  2012-04-03  Zverejnena prvni verze
 #  2012-04-09  Pridana kontrola tretiho radku (prispel Vilem Jenis) a maximalni velikosti archivu
 #  2012-04-26  Oprava povolenych pripon archivu, aby to odpovidalo pozadavkum v terminu ve WIS
@@ -30,7 +30,7 @@
 #              Zruseno rozsireni NVI a FILES.
 #  2023-04-08  Aktualizace prikazu pro Python 3.10
 #  2024-02-03  Upravy dle zadani pro 2024 a podpora tbz, podpora php8.3
-# TODO: --log pro jmeno souboru pro log, jinak se neloguje.
+#  2024-02-06  Podpora ipp-core (adresar student), podpora prikazu php8.3 i php
 
 LOG="is_it_ok.log"
 MAX_ARCHIVE_SIZE=1100000
