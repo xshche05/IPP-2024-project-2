@@ -15,13 +15,16 @@ all: check
 pack: student/*
 	cd $(STUDENT_DIR) && zip -r $(LOGIN).zip  * -x __MACOSX/* .git/* && mv $(LOGIN).zip ../
 
-check: pack
+check: pack vendor
 	./is_it_ok.sh $(LOGIN).zip $(TEMP_DIR) $(TASK) 
 
 run-help: interpret.php
-	if [ "$(HOSTNAME)" == "merlin.fit.vutbr.cz" ]; then php8.3 $(SCRIPT) --help; else php $(SCRIPT) --help; fi
+	if [ "${HOSTNAME}" = "merlin.fit.vutbr.cz" ]; then php8.3 $(SCRIPT) --help; else php $(SCRIPT) --help; fi
+
+vendor: composer.phar
+	if [ "${HOSTNAME}" = "merlin.fit.vutbr.cz" ]; then php8.3 $< install; else php $< install; fi
 
 clean:
-	$(RM) *.zip
+	$(RM) *.zip is_it_ok.log
 	$(RM) -r $(TEMP_DIR)
 
