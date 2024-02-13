@@ -40,7 +40,7 @@ Recommended VS Code extensions:
 
 ### Composer
 
-Composer (https://getcomposer.org/) is a very popular tool for dependency management in PHP. In this project, we use it very lightly just to define autoloading compliant with PSR-4 (https://www.php-fig.org/psr/psr-4/) and to handle one development dependency. If we allow any additional libraries, they will be also managed with this tool.
+Composer (https://getcomposer.org/) is a very popular tool for dependency management in PHP. In this project, we use it very lightly just to define autoloading compliant with PSR-4 (https://www.php-fig.org/psr/psr-4/) and to handle two development dependencies. If we allow any additional libraries, they will be also managed with this tool.
 
 To avoid complications with the installation in different environments, we have included this tool into the project as `composer.phar` that can be run as a regular script in PHP. Additionally, there is `composer.json` that defines autoloading and dependencies and `composer.lock` that holds precise versions of installed libraries.
 
@@ -48,7 +48,7 @@ With the command `install` this tool creates `vendor` directory with required fi
 
 ### PHPStan
 
-PHPStan (https://phpstan.org/) is a well-established tool for static analysis of PHP code. It can find errors in your code without actually running it. With higher rule levels, it also forces programmers to properly annotate and type hint their code. This is beneficial not just for the static analysis but also for the understandability of your code in general. This is especially true for object-oriented programming, because without types editors are not able to properly assist with code hints and code completion.
+PHPStan (https://phpstan.org/) is a well-established tool for static analysis of PHP code. It can find errors in your code without actually running it. When set to higher rule levels, it also forces programmers to properly annotate and type hint their code. This is beneficial not just for the static analysis but also for the understandability of your code in general. This is especially true for object-oriented programming, because without types editors are not able to properly assist with code hints and code completion.
 
 In newer versions of PHP, it is possible to write many types natively in the code. However, there are still situations in which types cannot be specified precisely in the native way (such as arrays). In these cases, you can write the precise type as a PHPDoc comment (see https://phpstan.org/user-guide/troubleshooting-types).
 
@@ -78,7 +78,7 @@ Steps for VS Code:
 - follow the installation steps in https://code.visualstudio.com/docs/devcontainers/containers until you have the Dev Containers extension prepared
 - open the project directory in VS Code
 - run the command "Dev Containers: Reopen in Container"
-- you should be now able to use the terminal in VS Code to execute commands in the container
+- you should be now able to use a terminal in VS Code to execute commands in the container
 - run `php interpret.php --help` to try the project execution
 
 ### Option 2: Merlin
@@ -91,7 +91,7 @@ https://code.visualstudio.com/docs/remote/faq#_can-i-run-vs-code-server-on-older
 
 Steps for VS Code 1.85:
 - follow https://code.visualstudio.com/docs/remote/ssh until you successfully connect VS Code and your project directory on Merlin
-- you should be now able to use the terminal in VS Code to execute commands on Merlin
+- you should be now able to use a terminal in VS Code to execute commands on Merlin
 - run `php8.3 composer.phar install` to install dependencies
 - run `php8.3 interpret.php --help` to try the project execution
 - optionally install other recommended VS Code extensions
