@@ -2,12 +2,9 @@
 
 namespace IPP\Student\program;
 
-use Cassandra\Exception\InvalidSyntaxException;
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\exceptions\InterpretSemanticException;
 use IPP\Student\exceptions\InvalidSourceStructure;
-use IPP\Student\executor\BasicExecutor;
-use IPP\Student\executor\Executor;
 use IPP\Student\instructions\Instruction;
 use IPP\Student\Settings;
 

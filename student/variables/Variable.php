@@ -33,9 +33,6 @@ class Variable extends MemoryValue
         if ($this->type === MemoryDataType::NONE_TYPE && !$soft) {
             throw new InternalErrorException("Variable {$this->name} is not initialized.");
         }
-//        if ($this->type !== MemoryDataType::fromValue($this->value)) {
-//            throw new InternalErrorException("Invalid value type");
-//        }
         return $this->value;
     }
 

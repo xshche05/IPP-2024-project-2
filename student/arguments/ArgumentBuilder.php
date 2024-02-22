@@ -11,7 +11,7 @@ class ArgumentBuilder
     /**
      * @param DOMElement $node XML node representing an argument
      * @return VarArgument|LiteralArgument|TypeArgument|LabelArgument - Argument object
-     * @throws InternalErrorException
+     * @throws InternalErrorException|InvalidSourceStructure
      */
     public static function buildArgument(DOMElement $node): VarArgument|LiteralArgument|TypeArgument|LabelArgument
     {

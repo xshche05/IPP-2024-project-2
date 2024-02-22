@@ -1,7 +1,6 @@
 <?php
 
 namespace IPP\Student\arguments;
-use IPP\Student\arguments\ArgumentType;
 
 abstract class AbstractArgument
 {

@@ -18,15 +18,9 @@ class MemoryValue
     /**
      * Function to access (get) value of MemoryValue
      * @return int|string|float|bool|null
-     * @throws InternalErrorException
      */
     public function getValue(): int|string|float|bool|null
     {
-//        if ($this->type !== MemoryDataType::fromValue($this->value)) {
-//            echo "type: " . $this->type->toString() . "\n";
-//            echo "Invalid value type " . $this->value . "\n";
-//            throw new InternalErrorException("Invalid value type");
-//        }
         return $this->value;
     }
 
