@@ -66,15 +66,39 @@ class LiteralArgument extends AbstractArgument
         }
     }
 
+    private function int(): int
+    {
+        # if starts with 0x or 0X or -0x or -0X then parse as hexadecimal number
+        $sign = str_starts_with($this->value, "-") ? -1 : 1;
+        $int_regex = '^[+-]?((\d+)|(0[xX][0-9a-fA-F]+)|(0[oO][0-7]+))$';
+        if (!preg_match("/$int_regex/", $this->value)) {
+            throw new InvalidSourceStructure("Invalid integer number");
+        }
+        $value = ltrim($this->value, "-");
+        if (str_starts_with($value, "0x") || str_starts_with($this->value, "0X")) {
+            return intval(base_convert($value, 16, 10))* $sign;
+        }
+        # if starts with 0o or 0O then parse as binary number
+        if (str_starts_with($value, "0o") || str_starts_with($this->value, "0O")){
+            return intval(base_convert($value, 8, 10)) * $sign;
+        }
+        # if starts with 0 or -0 then parse as decimal number
+        if (str_starts_with($this->value, "0")){
+            return intval(base_convert($value, 10, 10)) * $sign;
+        }
+        return intval($value) * $sign;
+    }
+
     /**
      * @throws InternalErrorException
+     * @throws InvalidSourceStructure
      */
     #[\Override] public function getValue(): string|int|bool|float|null
     {
         global $string_replace_map;
         return match ($this->type) {
             ArgumentType::STRING_LITERAL => strtr($this->value, $string_replace_map),
-            ArgumentType::INT_LITERAL => (int)$this->value,
+            ArgumentType::INT_LITERAL => $this->int(),
             ArgumentType::BOOL_LITERAL => (bool)$this->value,
             ArgumentType::FLOAT_LITERAL => $this->float(),
             ArgumentType::NIL_LITERAL => null,

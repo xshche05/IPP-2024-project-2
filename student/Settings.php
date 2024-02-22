@@ -115,7 +115,7 @@ class Settings extends \IPP\Core\Settings
 
     public static function getExecutor(): Executor
     {
-        $executor = self::$executor;
-        return $executor::getInstance();
+        $executor = self::$executor . "::getInstance";
+        return $executor();
     }
 }
