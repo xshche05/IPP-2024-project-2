@@ -2,6 +2,7 @@
 
 namespace IPP\Student;
 
+use DOMDocument;
 use IPP\Core\AbstractInterpreter;
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\exceptions\InterpretSemanticException;
@@ -17,7 +18,12 @@ class Interpreter extends AbstractInterpreter
      */
     public function execute(): int
     {
+        mb_internal_encoding("UTF-8");
         $dom = $this->source->getDOMDocument();
+        $scheme = Settings::getSchema();
+        if (!$dom->schemaValidateSource($scheme)) {
+            throw new InvalidSourceStructure("Invalid XML structure");
+        }
         $programBuilder = new ProgramBuilder($dom);
         $program = $programBuilder->build();
         StatOption::setProgram($program);

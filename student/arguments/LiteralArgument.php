@@ -11,7 +11,7 @@ $string_replace_map = [];
 
 for ($i = 0; $i < 1000; $i++) {
     $key = sprintf("\\%03d", $i);
-    $string_replace_map[$key] = mb_chr($i);
+    $string_replace_map[$key] = mb_chr($i, "UTF-8");
 }
 
 class LiteralArgument extends AbstractArgument
@@ -61,8 +61,10 @@ class LiteralArgument extends AbstractArgument
             $exp = isset($grp['exp']) ? intval($grp['exp']) * ($grp['esign'] === '-' ? -1 : 1) : 0;
 
             return $sign * ($int + $frac) * (2 ** $exp);
+        } else if (is_numeric($str)) {
+            return floatval($str);
         } else {
-            throw new InvalidSourceStructure("Invalid floating point number");
+            throw new InvalidSourceStructure("Invalid floating-point number {$str}");
         }
     }
 
@@ -89,6 +91,27 @@ class LiteralArgument extends AbstractArgument
         return intval($value) * $sign;
     }
 
+    private function bool(): bool
+    {
+        if ($this->value === "true") return true;
+        if ($this->value === "false") return false;
+        throw new InvalidSourceStructure("Invalid boolean value");
+    }
+
+    private function string(): string
+    {
+        $raw = $this->value;
+        # replace all escape sequences like \xxx with corresponding characters, xxx is decimal number
+        $pattern = '/\\\\([0-9]{3})/';
+        $raw = preg_replace_callback($pattern, function ($matches) {
+            return mb_chr(intval($matches[1]), "UTF-8");
+        }, $raw);
+        if ($raw === null) {
+            throw new InternalErrorException("preg_replace_callback failed");
+        }
+        return $raw;
+    }
+
     /**
      * @throws InternalErrorException
      * @throws InvalidSourceStructure
@@ -99,7 +122,7 @@ class LiteralArgument extends AbstractArgument
         return match ($this->type) {
             ArgumentType::STRING_LITERAL => strtr($this->value, $string_replace_map),
             ArgumentType::INT_LITERAL => $this->int(),
-            ArgumentType::BOOL_LITERAL => (bool)$this->value,
+            ArgumentType::BOOL_LITERAL => $this->bool(),
             ArgumentType::FLOAT_LITERAL => $this->float(),
             ArgumentType::NIL_LITERAL => null,
             default => throw new InternalErrorException("Invalid literal type"),

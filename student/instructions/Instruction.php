@@ -75,7 +75,7 @@ class Instruction
         try {
             $reflection = new ReflectionMethod($this->executor_instance, $this->executor_method);
         } catch (ReflectionException $e) {
-            throw new InterpretSemanticException("Unsupported instruction opcode " . $this->opcode);
+            throw new InvalidSourceStructure("Unsupported instruction opcode " . $this->opcode);
         }
         if ($reflection->getNumberOfRequiredParameters() !== count($this->getArguments()))
             throw new InvalidSourceStructure("Invalid number of arguments for instruction opcode");

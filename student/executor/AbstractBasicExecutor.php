@@ -182,7 +182,6 @@ trait AbstractBasicExecutor
         $src2_data = $this->getSymbMemoryValue($symb2);
         $type_comb = new TypePair($src1_data->getType(), $src2_data->getType());
         if (!in_array($type_comb, $allowedTypeComb)) {
-            var_dump($type_comb);
             throw new RuntimeTypeException("Invalid type combination for $operation");
         }
         $val1 = $src1_data->getValue();
@@ -393,10 +392,12 @@ trait AbstractBasicExecutor
         if ($src1_data->getType() != MemoryDataType::STRING || $src2_data->getType() != MemoryDataType::INT) {
             throw new RuntimeTypeException("Invalid type of STRI2INT operands, expected STRING and INT");
         }
-        if ($src2_data->getValue() < 0 || $src2_data->getValue() >= strlen((string)$src1_data->getValue())) {
+        if ($src2_data->getValue() < 0 || $src2_data->getValue() >= mb_strlen((string)$src1_data->getValue())) {
             throw new RuntimeStringException("STRI2INT - Index out of range");
         }
-        $data = mb_ord(((string)$src1_data->getValue())[$src2_data->getValue()], "UTF-8");
+        $string = (string)$src1_data->getValue();
+        $char = mb_substr($string, (int)$src2_data->getValue(), 1, "UTF-8");
+        $data = mb_ord($char, "UTF-8");
         if (!$data) {
             throw new RuntimeStringException("STRI2INT - Invalid character");
         }
@@ -506,9 +507,8 @@ trait AbstractBasicExecutor
         $src_data = $this->getSymbMemoryValue($symb);
         if ($src_data->getType() != MemoryDataType::STRING) {
             throw new RuntimeTypeException("STRLEN - Invalid type");
-
         }
-        $result = new MemoryValue(strlen((string)$src_data->getValue()), MemoryDataType::INT);
+        $result = new MemoryValue(mb_strlen((string)$src_data->getValue()), MemoryDataType::INT);
         $dest_var->assign($result);
     }
 
@@ -531,10 +531,11 @@ trait AbstractBasicExecutor
         if ($src1_data->getType() != MemoryDataType::STRING || $src2_data->getType() != MemoryDataType::INT) {
             throw new RuntimeTypeException("GETCHAR - Invalid type");
         }
-        if ($src2_data->getValue() < 0 || $src2_data->getValue() >= strlen((string)$src1_data->getValue())) {
+        if ($src2_data->getValue() < 0 || $src2_data->getValue() >= mb_strlen((string)$src1_data->getValue())) {
             throw new RuntimeStringException("GETCHAR - Index out of range");
         }
-        $result = new MemoryValue(((string)$src1_data->getValue())[$src2_data->getValue()], MemoryDataType::STRING);
+        $char = mb_substr((string)$src1_data->getValue(), (int)$src2_data->getValue(), 1, "UTF-8");
+        $result = new MemoryValue($char, MemoryDataType::STRING);
         $dest_var->assign($result);
     }
 
@@ -557,11 +558,12 @@ trait AbstractBasicExecutor
         if ($dest_var->getType() != MemoryDataType::STRING || $src1_data->getType() != MemoryDataType::INT || $src2_data->getType() != MemoryDataType::STRING) {
             throw new RuntimeTypeException("SETCHAR - Invalid type");
         }
-        if ($src1_data->getValue() < 0 || $src1_data->getValue() >= strlen((string)$dest_var->getValue())) {
+        if ($src1_data->getValue() < 0 || $src1_data->getValue() >= mb_strlen((string)$dest_var->getValue())) {
             throw new RuntimeStringException("SETCHAR - Index out of range");
         }
         $data = (string)$dest_var->getValue();
-        $data[(int)$src1_data->getValue()] = (string)$src2_data->getValue();
+        // set index in unicode string to new char
+        $data = mb_substr($data, 0, (int)$src1_data->getValue(), "UTF-8") . (string)$src2_data->getValue() . mb_substr($data, (int)$src1_data->getValue() + 1, null, "UTF-8");
         $result = new MemoryValue($data, MemoryDataType::STRING);
         $dest_var->assign($result);
     }
@@ -712,9 +714,9 @@ trait AbstractBasicExecutor
      */
     public function BREAK(): void
     {
-        $this->executed_instruction_count--;
         $this->stderr->writeString("Current state of the executor:\n");
         $this->stderr->writeString("Instruction pointer: {$this->instruction_pointer}\n");
         $this->stderr->writeString("Executed instructions: {$this->executed_instruction_count}\n");
+        $this->executed_instruction_count--;
     }
 }

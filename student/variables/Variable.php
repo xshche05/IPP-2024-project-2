@@ -3,6 +3,7 @@
 namespace IPP\Student\variables;
 
 use IPP\Core\Exception\InternalErrorException;
+use IPP\Student\exceptions\RuntimeNoValueException;
 
 class Variable extends MemoryValue
 {
@@ -31,7 +32,7 @@ class Variable extends MemoryValue
     public function getValue(bool $soft = false): int|string|float|bool|null
     {
         if ($this->type === MemoryDataType::NONE_TYPE && !$soft) {
-            throw new InternalErrorException("Variable {$this->name} is not initialized.");
+            throw new RuntimeNoValueException("Variable {$this->name} is not initialized.");
         }
         return $this->value;
     }

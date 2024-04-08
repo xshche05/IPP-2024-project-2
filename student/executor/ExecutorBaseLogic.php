@@ -128,9 +128,9 @@ trait ExecutorBaseLogic
      */
     protected function dataPush(MemoryValue $value) : void
     {
-        $this->dataStack[] = $value;
-        if (count($this->dataStack) > $this->maxDataStackSize) {
-            $this->maxDataStackSize = count($this->dataStack);
+        $size = array_push($this->dataStack, $value);
+        if ($size > $this->maxDataStackSize) {
+            $this->maxDataStackSize = $size;
         }
     }
 

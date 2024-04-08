@@ -229,8 +229,8 @@ trait AbstractStackExecutor
 
     public function STRI2INTS(): void
     {
-        $src1_data = $this->dataPop();
         $src2_data = $this->dataPop();
+        $src1_data = $this->dataPop();
         if ($src1_data->getType() != MemoryDataType::STRING || $src2_data->getType() != MemoryDataType::INT) {
             throw new RuntimeTypeException("Invalid type of STRI2INTS operands, expected STRING and INT");
         }

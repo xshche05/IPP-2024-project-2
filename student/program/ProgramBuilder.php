@@ -31,7 +31,8 @@ class ProgramBuilder
         $instructions_elements = $program_node->getElementsByTagName('instruction');
         foreach ($instructions_elements as $instruction_element) {
             $instruction = InstructionBuilder::build_instruction($instruction_element);
-            $order = (int)$instruction_element->getAttribute('order');
+            $order = $instruction_element->getAttribute('order');
+            $order = intval($order);
             $this->program->addInstruction($instruction, $order);
         }
         $this->program->initOrders();

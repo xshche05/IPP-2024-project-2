@@ -2,6 +2,7 @@
 
 namespace IPP\Student;
 
+use IPP\Core\Exception\InternalErrorException;
 use IPP\Core\Exception\ParameterException;
 use IPP\Core\ReturnCode;
 use IPP\Student\executor\Executor;
@@ -115,7 +116,17 @@ class Settings extends \IPP\Core\Settings
 
     public static function getExecutor(): Executor
     {
-        $executor = self::$executor . "::getInstance";
-        return $executor();
+        return self::$executor::getInstance();
+    }
+
+    public static function getSchema(): string
+    {
+        $xml_scheme = __DIR__ . "/schema.xsd";
+        $file = realpath($xml_scheme);
+        if ($file === false) {
+            throw new InternalErrorException("Cannot find schema file");
+        }
+        $file_data = file_get_contents($file);
+        return $file_data;
     }
 }
