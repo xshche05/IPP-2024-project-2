@@ -2,7 +2,6 @@
 
 namespace IPP\Student\Variables;
 
-use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\Exceptions\RuntimeNoValueException;
 
 class Variable extends MemoryValue
@@ -27,12 +26,12 @@ class Variable extends MemoryValue
      * Function to access (get) value of Variable
      * @param bool $soft if true, no exception is thrown if the variable is not initialized
      * @return int|string|float|bool|null - value of the variable
-     * @throws InternalErrorException - if the variable is not initialized and $soft is false
+     * @throws RuntimeNoValueException - if the variable is not initialized and $soft is false
      */
     public function getValue(bool $soft = false): int|string|float|bool|null
     {
         if ($this->type === MemoryDataType::NONE_TYPE && !$soft) {
-            throw new RuntimeNoValueException("Variable {$this->name} is not initialized.");
+            throw new RuntimeNoValueException("Variable $this->name is not initialized.");
         }
         return $this->value;
     }
@@ -40,7 +39,7 @@ class Variable extends MemoryValue
     /**
      * Function to assign value and type of another variable or memory value to this variable
      * @param Variable | MemoryValue $variable variable or memory value to be assigned to
-     * @throws InternalErrorException
+     * @throws RuntimeNoValueException
      */
     public function assign(Variable|MemoryValue $variable): void
     {

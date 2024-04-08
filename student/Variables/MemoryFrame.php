@@ -4,7 +4,6 @@ namespace IPP\Student\Variables;
 
 use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\RuntimeUndefVarException;
-use IPP\Student\Variables\Variable;
 
 class MemoryFrame
 {
@@ -38,7 +37,7 @@ class MemoryFrame
     public function getVariable(string $name): Variable
     {
         if (!isset($this->var_map[$name])) {
-            throw new RuntimeUndefVarException("Variable {$name} is not defined in this frame");
+            throw new RuntimeUndefVarException("Variable $name is not defined in this frame");
         }
         return $this->var_map[$name];
     }

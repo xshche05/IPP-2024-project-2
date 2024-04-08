@@ -2,6 +2,7 @@
 
 namespace IPP\Student\Executor;
 
+use IPP\Student\Exceptions\RuntimeNoValueException;
 use IPP\Student\Exceptions\RuntimeTypeException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
@@ -11,6 +12,11 @@ trait AbstractFloatStackExecutor
     use ExecutorBaseLogic;
     /** FLOAT STACK CONV */
 
+    /**
+     * @return void
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function INT2FLOATS() : void
     {
         $src_data = $this->dataPop();
@@ -21,6 +27,10 @@ trait AbstractFloatStackExecutor
         $this->dataPush($result);
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function FLOAT2INTS() : void
     {
         $src_data = $this->dataPop();

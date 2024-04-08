@@ -2,6 +2,8 @@
 
 namespace IPP\Student;
 
+use InvalidArgumentException;
+
 enum StatOptionType
 {
     case INSTS;
@@ -22,7 +24,7 @@ enum StatOptionType
             "--vars" => self::VARS,
             "--stack" => self::STACK,
             "--eol" => self::EOL,
-            default => throw new \InvalidArgumentException("Invalid stat option: $str"),
+            default => throw new InvalidArgumentException("Invalid stat option: $str"),
         };
     }
 }

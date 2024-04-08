@@ -6,7 +6,6 @@ use IPP\Student\Arguments\LabelArgument;
 use IPP\Student\Arguments\LiteralArgument;
 use IPP\Student\Arguments\TypeArgument;
 use IPP\Student\Arguments\VarArgument;
-use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 use IPP\Student\Executor\Executor;
 use ReflectionException;
@@ -29,6 +28,9 @@ class Instruction
         $this->execution_count = 0;
     }
 
+    /**
+     * @throws InvalidSourceStructure
+     */
     public function addArgument(LabelArgument|LiteralArgument|TypeArgument|VarArgument $argument, int $order): void
     {
         if (isset($this->arguments[$order]))
@@ -49,6 +51,7 @@ class Instruction
 
     /**
      * @return array<LabelArgument|LiteralArgument|TypeArgument|VarArgument>
+     * @throws InvalidSourceStructure
      */
     public function getArguments(): array
     {
@@ -79,11 +82,15 @@ class Instruction
         return $this->execution_count;
     }
 
+    /**
+     * @throws ReflectionException
+     * @throws InvalidSourceStructure
+     */
     public function execute(): void
     {
         try {
             $reflection = new ReflectionMethod($this->executor_instance, $this->executor_method);
-        } catch (ReflectionException $e) {
+        } catch (ReflectionException) {
             throw new InvalidSourceStructure("Unsupported instruction opcode " . $this->opcode);
         }
         if ($reflection->getNumberOfRequiredParameters() !== count($this->getArguments()))

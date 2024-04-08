@@ -23,6 +23,11 @@ class Program
         $this->label_map = array();
     }
 
+    /**
+     * @throws InvalidSourceStructure
+     * @throws InterpretSemanticException
+     * @throws InternalErrorException
+     */
     public function addInstruction(Instruction $instruction, int $order): void
     {
         if ($order < 0)
@@ -38,6 +43,9 @@ class Program
         }
     }
 
+    /**
+     * @throws InterpretSemanticException
+     */
     public function addLabel(string $label, int $order): void
     {
         if (isset($this->label_map[$label]))
@@ -55,6 +63,9 @@ class Program
         return isset($this->instruction_flow[$order]);
     }
 
+    /**
+     * @throws InterpretSemanticException
+     */
     public function getLabelOrder(string $label): int
     {
         // get label order
@@ -95,11 +106,6 @@ class Program
         }
         $this->most_executed_count = $most_executed;
         return $least_order;
-    }
-
-    public function getMostExecutedCount(): int
-    {
-        return $this->most_executed_count;
     }
 
     public function getInstStat(): int

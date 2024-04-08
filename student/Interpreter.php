@@ -2,10 +2,8 @@
 
 namespace IPP\Student;
 
-use DOMDocument;
 use IPP\Core\AbstractInterpreter;
 use IPP\Core\Exception\InternalErrorException;
-use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 use IPP\Student\Program\ProgramBuilder;
 
@@ -13,7 +11,6 @@ class Interpreter extends AbstractInterpreter
 {
     /**
      * @throws InvalidSourceStructure
-     * @throws InterpretSemanticException
      * @throws InternalErrorException
      */
     public function execute(): int

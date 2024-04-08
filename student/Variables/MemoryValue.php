@@ -2,7 +2,7 @@
 
 namespace IPP\Student\Variables;
 
-use IPP\Core\Exception\InternalErrorException;
+use IPP\Student\Exceptions\RuntimeNoValueException;
 use IPP\Student\Exceptions\RuntimeTypeException;
 use IPP\Student\Exceptions\RuntimeWrongValueException;
 
@@ -35,6 +35,10 @@ class MemoryValue
         return $this->type;
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function add(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type == MemoryDataType::INT && $second->getType() == MemoryDataType::INT) {
@@ -50,6 +54,10 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function sub(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type == MemoryDataType::INT && $second->getType() == MemoryDataType::INT) {
@@ -65,6 +73,9 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException|RuntimeNoValueException
+     */
     public function mul(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type == MemoryDataType::INT && $second->getType() == MemoryDataType::INT) {
@@ -80,6 +91,11 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeWrongValueException
+     * @throws RuntimeNoValueException
+     */
     public function idiv(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type == MemoryDataType::INT && $second->getType() == MemoryDataType::INT) {
@@ -93,6 +109,11 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeWrongValueException
+     * @throws RuntimeNoValueException
+     */
     public function div(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type == MemoryDataType::FLOAT && $second->getType() == MemoryDataType::FLOAT) {
@@ -106,6 +127,10 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function eq(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type === $second->getType()) {
@@ -117,6 +142,10 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function lt(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type === $second->getType()
@@ -127,6 +156,10 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function gt(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type === $second->getType()
@@ -137,6 +170,9 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException|RuntimeNoValueException
+     */
     public function and(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type === MemoryDataType::BOOL && $second->getType() === MemoryDataType::BOOL) {
@@ -145,6 +181,10 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function or(MemoryValue|Variable $second): MemoryValue
     {
         if ($this->type === MemoryDataType::BOOL && $second->getType() === MemoryDataType::BOOL) {
@@ -153,6 +193,9 @@ class MemoryValue
         throw new RuntimeTypeException("Operation not supported"); // todo
     }
 
+    /**
+     * @throws RuntimeTypeException
+     */
     public function not(): MemoryValue
     {
         if ($this->type === MemoryDataType::BOOL) {

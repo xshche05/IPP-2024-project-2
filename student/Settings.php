@@ -23,6 +23,9 @@ class Settings extends \IPP\Core\Settings
 
     private static string $executor = Executor::class;
 
+    /**
+     * @throws ParameterException
+     */
     public function processArgs(): void
     {
         parent::processArgs();
@@ -33,7 +36,7 @@ class Settings extends \IPP\Core\Settings
         }
         $options = $_SERVER['argv'];
         array_shift($options);
-        foreach ($options as $key => $value) {
+        foreach ($options as $value) {
             // if starts with --source= or --input= or --stats= then remove it from array
             if (!(str_starts_with($value, "--source=")
                 || str_starts_with($value, "--input=")
@@ -116,9 +119,14 @@ class Settings extends \IPP\Core\Settings
 
     public static function getExecutor(): Executor
     {
-        return self::$executor::getInstance();
+        /** @var Executor $executor*/
+        $executor = self::$executor;
+        return $executor::getInstance();
     }
 
+    /**
+     * @throws InternalErrorException
+     */
     public static function getSchema(): string
     {
         $xml_scheme = __DIR__ . "/schema.xsd";

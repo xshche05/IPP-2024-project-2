@@ -7,7 +7,6 @@ use IPP\Core\Interface\InputReader;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Student\Arguments\LiteralArgument;
 use IPP\Student\Arguments\VarArgument;
-use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 use IPP\Student\Exceptions\RuntimeMemoryFrameException;
 use IPP\Student\Exceptions\RuntimeNoValueException;
@@ -17,6 +16,7 @@ use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryFrame;
 use IPP\Student\Variables\MemoryValue;
 use IPP\Student\Variables\Variable;
+use ReflectionException;
 
 trait ExecutorBaseLogic
 {
@@ -150,8 +150,7 @@ trait ExecutorBaseLogic
 
     /**
      * Function to execute the program
-     * @throws InterpretSemanticException - if the instruction opcode is not supported
-     * @throws InvalidSourceStructure - if there is no temporary frame to push on frame stack
+     * @throws InvalidSourceStructure|ReflectionException - if there is no temporary frame to push on frame stack
      */
     public function run(): int
     {
@@ -215,7 +214,7 @@ trait ExecutorBaseLogic
      * @return MemoryValue - value of the variable or literal argument
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
-     * @throws InternalErrorException - if the frame is unknown
+     * @throws InternalErrorException|RuntimeNoValueException - if the frame is unknown
      */
     protected function getSymbMemoryValue(VarArgument|LiteralArgument $symb, bool $soft = false): MemoryValue
     {

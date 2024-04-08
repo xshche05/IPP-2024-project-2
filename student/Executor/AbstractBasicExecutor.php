@@ -30,7 +30,7 @@ trait AbstractBasicExecutor
      * @param VarArgument|LiteralArgument $symb variable or literal argument to move the value from
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
-     * @throws InternalErrorException - if the frame is unknown
+     * @throws InternalErrorException|RuntimeNoValueException - if the frame is unknown
      */
     public function MOVE(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
@@ -105,6 +105,7 @@ trait AbstractBasicExecutor
     /**
      * Function to execute the instruction CALL
      * @param LabelArgument $label label to call
+     * @throws InterpretSemanticException
      */
     public function CALL(LabelArgument $label): void
     {
@@ -133,6 +134,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - if the frame is unknown
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeNoValueException
      */
     public function PUSHS(VarArgument|LiteralArgument $symb): void
     {
@@ -159,6 +161,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction ADD
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function ADD(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -170,6 +180,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction SUB
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function SUB(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -181,6 +199,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction MUL
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function MUL(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -192,6 +218,15 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction IDIV
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeWrongValueException
+     * @throws RuntimeNoValueException
      */
     public function IDIV(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -203,6 +238,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction LT
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function LT(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -214,6 +257,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction GT
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function GT(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -225,6 +276,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction EQ
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function EQ(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -236,6 +295,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction AND
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function AND(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -247,6 +314,14 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction OR
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function OR(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -258,6 +333,13 @@ trait AbstractBasicExecutor
 
     /**
      * Function to execute the instruction NOT
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb
+     * @throws InternalErrorException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeTypeException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
      */
     public function NOT(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
@@ -275,6 +357,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - internal errors
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeNoValueException
      */
     public function INT2CHAR(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
@@ -301,6 +384,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - internal errors
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeNoValueException
      */
     public function STRI2INT(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -332,7 +416,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - if the type of the input is unknown
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws InterpretSemanticException if the type of the input is invalid
-     * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeUndefVarException|RuntimeNoValueException - if the variable is not defined in the frame
      */
     public function READ(VarArgument $var, TypeArgument $type): void
     {
@@ -367,6 +451,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - if the type of the input is unknown
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeNoValueException
      */
     public function WRITE(VarArgument|LiteralArgument $symb): void
     {
@@ -397,6 +482,7 @@ trait AbstractBasicExecutor
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
      * @throws InternalErrorException - internal errors
      * @throws RuntimeTypeException - if the operands are not strings
+     * @throws RuntimeNoValueException
      */
     public function CONCAT(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -418,6 +504,7 @@ trait AbstractBasicExecutor
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
      * @throws InternalErrorException - internal errors
      * @throws RuntimeTypeException - if the operand is not a string
+     * @throws RuntimeNoValueException
      */
     public function STRLEN(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
@@ -440,6 +527,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - internal errors
      * @throws RuntimeTypeException - if the operands are not of correct types
      * @throws RuntimeStringException - if the index is out of range
+     * @throws RuntimeNoValueException
      */
     public function GETCHAR(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -467,6 +555,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - internal errors
      * @throws RuntimeTypeException - if the operands are not of correct types
      * @throws RuntimeStringException - if the index is out of range
+     * @throws RuntimeNoValueException
      */
     public function SETCHAR(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -496,6 +585,7 @@ trait AbstractBasicExecutor
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws InternalErrorException - internal errors
+     * @throws RuntimeNoValueException
      */
     public function TYPE(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
@@ -527,6 +617,7 @@ trait AbstractBasicExecutor
     /**
      * Function to execute the instruction JUMP
      * @param LabelArgument $label label to jump to
+     * @throws InterpretSemanticException
      */
     public function JUMP(LabelArgument $label): void
     {
@@ -541,7 +632,8 @@ trait AbstractBasicExecutor
      * @throws RuntimeTypeException - if the operands are not of the same type
      * @throws InternalErrorException - internal errors
      * @throws RuntimeMemoryFrameException - if the frame is not defined
-     * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeUndefVarException|InterpretSemanticException - if the variable is not defined in the frame
+     * @throws RuntimeNoValueException
      */
     public function JUMPIFEQ(LabelArgument $label, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -566,6 +658,8 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - internal errors
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws InterpretSemanticException
+     * @throws RuntimeNoValueException
      */
     public function JUMPIFNEQ(LabelArgument $label, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
@@ -588,6 +682,8 @@ trait AbstractBasicExecutor
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
      * @throws RuntimeWrongValueException - if the exit code is out of range 0-9
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
      */
     public function EXIT(VarArgument|LiteralArgument $symb): void
     {
@@ -597,7 +693,7 @@ trait AbstractBasicExecutor
         }
         $code = $src_data->getValue();
         if ($code < 0 || $code > 9) {
-            throw new RuntimeWrongValueException("EXIT - Invalid exit code {$code} must be in range 0-9");
+            throw new RuntimeWrongValueException("EXIT - Invalid exit code $code must be in range 0-9");
         }
         self::$stop_execution = true;
         self::$ret_code = (int)$code;
@@ -611,6 +707,7 @@ trait AbstractBasicExecutor
      * @throws InternalErrorException - if the type of the input is unknown
      * @throws RuntimeMemoryFrameException - if the frame is not defined
      * @throws RuntimeUndefVarException - if the variable is not defined in the frame
+     * @throws RuntimeNoValueException
      */
     public function DPRINT(VarArgument|LiteralArgument $symb): void
     {
@@ -637,8 +734,8 @@ trait AbstractBasicExecutor
     public function BREAK(): void
     {
         $this->stderr->writeString("Current state of the executor:\n");
-        $this->stderr->writeString("Instruction pointer: {$this->instruction_pointer}\n");
-        $this->stderr->writeString("Executed instructions: {$this->executed_instruction_count}\n");
+        $this->stderr->writeString("Instruction pointer: $this->instruction_pointer\n");
+        $this->stderr->writeString("Executed instructions: $this->executed_instruction_count\n");
         $this->executed_instruction_count--;
     }
 }

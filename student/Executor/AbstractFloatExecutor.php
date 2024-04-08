@@ -2,16 +2,32 @@
 
 namespace IPP\Student\Executor;
 
+use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\Arguments\LiteralArgument;
 use IPP\Student\Arguments\VarArgument;
+use IPP\Student\Exceptions\RuntimeMemoryFrameException;
+use IPP\Student\Exceptions\RuntimeNoValueException;
 use IPP\Student\Exceptions\RuntimeTypeException;
+use IPP\Student\Exceptions\RuntimeUndefVarException;
+use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
 
 trait AbstractFloatExecutor
 {
     use ExecutorBaseLogic;
-    /** FLOAT  */
+
+    /** FLOAT */
+
+    /**
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb
+     * @throws InternalErrorException
+     * @throws RuntimeTypeException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
+     */
     public function INT2FLOAT(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
         $dest_var = $this->getFramedVariable($var);
@@ -24,6 +40,15 @@ trait AbstractFloatExecutor
         $dest_var->assign($result);
     }
 
+    /**
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb
+     * @throws InternalErrorException
+     * @throws RuntimeTypeException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeNoValueException
+     */
     public function FLOAT2INT(VarArgument $var, VarArgument|LiteralArgument $symb): void
     {
         $dest_var = $this->getFramedVariable($var);
@@ -36,6 +61,16 @@ trait AbstractFloatExecutor
         $dest_var->assign($result);
     }
 
+    /**
+     * @param VarArgument $var
+     * @param VarArgument|LiteralArgument $symb1
+     * @param VarArgument|LiteralArgument $symb2
+     * @throws InternalErrorException
+     * @throws RuntimeTypeException
+     * @throws RuntimeMemoryFrameException
+     * @throws RuntimeUndefVarException
+     * @throws RuntimeWrongValueException|RuntimeNoValueException
+     */
     public function DIV(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
         $dest_var = $this->getFramedVariable($var);

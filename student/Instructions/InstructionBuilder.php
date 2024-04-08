@@ -12,6 +12,7 @@ class InstructionBuilder
 {
     /**
      * @throws InternalErrorException
+     * @throws InvalidSourceStructure
      */
     public static function build_instruction(DOMElement $instructionNode): Instruction
     {

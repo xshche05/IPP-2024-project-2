@@ -4,6 +4,8 @@ namespace IPP\Student\Program;
 
 use DOMDocument;
 use DOMElement;
+use IPP\Core\Exception\InternalErrorException;
+use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 use IPP\Student\Instructions\InstructionBuilder;
 
@@ -18,6 +20,11 @@ class ProgramBuilder
         $this->dom = $dom;
     }
 
+    /**
+     * @throws InternalErrorException
+     * @throws InvalidSourceStructure
+     * @throws InterpretSemanticException
+     */
     public function build(): Program
     {
         # get program node

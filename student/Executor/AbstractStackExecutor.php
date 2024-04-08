@@ -3,8 +3,11 @@
 namespace IPP\Student\Executor;
 
 use IPP\Student\Arguments\LabelArgument;
+use IPP\Student\Exceptions\InterpretSemanticException;
+use IPP\Student\Exceptions\RuntimeNoValueException;
 use IPP\Student\Exceptions\RuntimeStringException;
 use IPP\Student\Exceptions\RuntimeTypeException;
+use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
 
@@ -18,6 +21,10 @@ trait AbstractStackExecutor
         $this->dataStack = [];
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function ADDS(): void
     {
         $src2_data = $this->dataPop();
@@ -25,6 +32,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->add($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function SUBS(): void
     {
         $src2_data = $this->dataPop();
@@ -32,6 +43,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->sub($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function MULS(): void
     {
         $src2_data = $this->dataPop();
@@ -39,6 +54,11 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->mul($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeWrongValueException
+     * @throws RuntimeTypeException
+     */
     public function IDIVS(): void
     {
         $src2_data = $this->dataPop();
@@ -46,6 +66,11 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->idiv($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeWrongValueException
+     * @throws RuntimeTypeException
+     */
     public function DIVS(): void
     {
         $src2_data = $this->dataPop();
@@ -53,6 +78,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->div($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function LTS(): void
     {
         $src2_data = $this->dataPop();
@@ -60,6 +89,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->lt($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function GTS(): void
     {
         $src2_data = $this->dataPop();
@@ -67,6 +100,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->gt($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function EQS(): void
     {
         $src2_data = $this->dataPop();
@@ -74,6 +111,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->eq($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function ANDS(): void
     {
         $src2_data = $this->dataPop();
@@ -81,6 +122,10 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->and($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function ORS(): void
     {
         $src2_data = $this->dataPop();
@@ -88,12 +133,21 @@ trait AbstractStackExecutor
         $this->dataPush($src1_data->or($src2_data));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeTypeException
+     */
     public function NOTS(): void
     {
         $src_data = $this->dataPop();
         $this->dataPush($src_data->not());
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeStringException
+     * @throws RuntimeTypeException
+     */
     public function INT2CHARS(): void
     {
         $src_data = $this->dataPop();
@@ -107,6 +161,11 @@ trait AbstractStackExecutor
         $this->dataPush(new MemoryValue($data, MemoryDataType::STRING));
     }
 
+    /**
+     * @throws RuntimeStringException
+     * @throws RuntimeTypeException
+     * @throws RuntimeNoValueException
+     */
     public function STRI2INTS(): void
     {
         $src2_data = $this->dataPop();
@@ -124,6 +183,11 @@ trait AbstractStackExecutor
         $this->dataPush(new MemoryValue($data, MemoryDataType::INT));
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws InterpretSemanticException
+     * @throws RuntimeTypeException
+     */
     public function JUMPIFEQS(LabelArgument $label): void
     {
         $src2_data = $this->dataPop();
@@ -138,6 +202,11 @@ trait AbstractStackExecutor
         }
     }
 
+    /**
+     * @throws RuntimeNoValueException
+     * @throws InterpretSemanticException
+     * @throws RuntimeTypeException
+     */
     public function JUMPIFNEQS(LabelArgument $label): void
     {
         $src2_data = $this->dataPop();
