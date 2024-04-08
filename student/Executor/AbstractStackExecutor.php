@@ -2,16 +2,11 @@
 
 namespace IPP\Student\Executor;
 
-use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\Arguments\LabelArgument;
-use IPP\Student\Arguments\LiteralArgument;
-use IPP\Student\Arguments\VarArgument;
 use IPP\Student\Exceptions\RuntimeStringException;
 use IPP\Student\Exceptions\RuntimeTypeException;
-use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
-use IPP\Student\Variables\TypePair;
 
 trait AbstractStackExecutor
 {

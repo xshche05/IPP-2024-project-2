@@ -7,7 +7,6 @@ use IPP\Student\Arguments\VarArgument;
 use IPP\Student\Exceptions\RuntimeTypeException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
-use IPP\Student\Variables\TypePair;
 
 trait AbstractFloatExecutor
 {

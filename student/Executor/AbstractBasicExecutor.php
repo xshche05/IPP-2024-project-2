@@ -17,7 +17,6 @@ use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryFrame;
 use IPP\Student\Variables\MemoryValue;
-use IPP\Student\Variables\TypePair;
 use IPP\Student\Variables\Variable;
 
 trait AbstractBasicExecutor

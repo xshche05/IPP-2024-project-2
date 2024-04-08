@@ -3,12 +3,17 @@
 namespace IPP\Student\Arguments;
 
 use IPP\Student\Exceptions\InvalidSourceStructure;
+use Override;
 
 class VarArgument extends AbstractArgument
 {
     private static string $var_regex = '/^[LTG]F@[a-zA-Z0-9_\-&%*$!?]+$/';
     private string $name;
     private string $frame;
+
+    /**
+     * @throws InvalidSourceStructure
+     */
     public function __construct(string $value)
     {
         parent::__construct(ArgumentType::VARIABLE ,$value);
@@ -23,7 +28,7 @@ class VarArgument extends AbstractArgument
      * Function to access (get) the value of the argument
      * @return string - value of the argument as string
      */
-    #[\Override] public function getValue(): string
+    #[Override] public function getValue(): string
     {
         return $this->value;
     }

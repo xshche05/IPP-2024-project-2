@@ -2,10 +2,9 @@
 
 namespace IPP\Student\Arguments;
 
-use _PHPStan_cc8d35ffb\Nette\NotImplementedException;
 use IPP\Core\Exception\InternalErrorException;
-use IPP\Student\Arguments\ArgumentType;
 use IPP\Student\Exceptions\InvalidSourceStructure;
+use Override;
 
 class LiteralArgument extends AbstractArgument
 {
@@ -13,6 +12,11 @@ class LiteralArgument extends AbstractArgument
     private int $int_value;
     private bool $bool_value;
     private string $string_value;
+
+    /**
+     * @throws InternalErrorException
+     * @throws InvalidSourceStructure
+     */
     public function __construct(ArgumentType $type, string $value)
     {
         switch ($type) {
@@ -42,9 +46,13 @@ class LiteralArgument extends AbstractArgument
 
     private function float(): float
     {
-        throw new NotImplementedException("Not implemented float");
+        // todo: implement float parsing
+        throw new InternalErrorException("Not implemented");
     }
 
+    /**
+     * @throws InvalidSourceStructure
+     */
     private function int(): int
     {
         # if starts with 0x or 0X or -0x or -0X then parse as hexadecimal number
@@ -68,6 +76,9 @@ class LiteralArgument extends AbstractArgument
         return intval($value) * $sign;
     }
 
+    /**
+     * @throws InvalidSourceStructure
+     */
     private function bool(): bool
     {
         if ($this->value === "true") return true;
@@ -75,6 +86,10 @@ class LiteralArgument extends AbstractArgument
         throw new InvalidSourceStructure("Invalid boolean value");
     }
 
+    /**
+     * @throws InvalidSourceStructure
+     * @throws InternalErrorException
+     */
     private function string(): string
     {
         $raw = $this->value;
@@ -93,21 +108,18 @@ class LiteralArgument extends AbstractArgument
         return $raw;
     }
 
-    #[\Override] public function getValue(): string|int|bool|float|null
+    /**
+     * @throws InternalErrorException
+     */
+    #[Override] public function getValue(): string|int|bool|float|null
     {
-        switch ($this->type) {
-            case ArgumentType::FLOAT_LITERAL:
-                return $this->float_value;
-            case ArgumentType::INT_LITERAL:
-                return $this->int_value;
-            case ArgumentType::BOOL_LITERAL:
-                return $this->bool_value;
-            case ArgumentType::STRING_LITERAL:
-                return $this->string_value;
-            case ArgumentType::NIL_LITERAL:
-                return null;
-            default:
-                throw new InternalErrorException("Invalid literal type");
-        }
+        return match ($this->type) {
+            ArgumentType::FLOAT_LITERAL => $this->float_value,
+            ArgumentType::INT_LITERAL => $this->int_value,
+            ArgumentType::BOOL_LITERAL => $this->bool_value,
+            ArgumentType::STRING_LITERAL => $this->string_value,
+            ArgumentType::NIL_LITERAL => null,
+            default => throw new InternalErrorException("Invalid literal type"),
+        };
     }
 }

@@ -3,6 +3,7 @@
 namespace IPP\Student\Arguments;
 
 use IPP\Core\Exception\InternalErrorException;
+use Override;
 
 class TypeArgument extends AbstractArgument
 {
@@ -20,7 +21,7 @@ class TypeArgument extends AbstractArgument
         $this->type_value = $this->value;
     }
 
-    #[\Override] public function getValue(): string
+    #[Override] public function getValue(): string
     {
         return $this->type_value;
     }
