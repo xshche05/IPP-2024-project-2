@@ -2,7 +2,7 @@
 
 namespace IPP\Student;
 
-use IPP\Student\program\Program;
+use IPP\Student\Program\Program;
 
 class StatOption
 {

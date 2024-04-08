@@ -5,7 +5,7 @@ namespace IPP\Student;
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Core\Exception\ParameterException;
 use IPP\Core\ReturnCode;
-use IPP\Student\executor\Executor;
+use IPP\Student\Executor\Executor;
 
 class Settings extends \IPP\Core\Settings
 {
@@ -127,6 +127,9 @@ class Settings extends \IPP\Core\Settings
             throw new InternalErrorException("Cannot find schema file");
         }
         $file_data = file_get_contents($file);
+        if ($file_data === false) {
+            throw new InternalErrorException("Cannot read schema file");
+        }
         return $file_data;
     }
 }

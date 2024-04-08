@@ -1,54 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
-    <xs:simpleType name="VAR_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[LTG]F@[a-zA-Z0-9_\-&amp;%*$!?]+"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="LABEL_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[a-zA-Z0-9_\-&amp;%*$!?]+"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="INT_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[+-]?(([0-9]+)|(0[xX][0-9a-fA-F]+)|(0[oO][0-7]+))"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="BOOL_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="(true|false)"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="STRING_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="([^&#x0009;-&#x0020;&#x0023;&#x005C;\]|(\\[0-9]{3}))*"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="FLOAT_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="NONE"/> <!-- TODO -->
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="NIL_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="nil"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="TYPE_T">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="(int|string|bool|float)"/>
-        </xs:restriction>
-    </xs:simpleType>
-
     <!-- possible types of arguments -->
 
     <xs:simpleType name="ARG_TYPES">
@@ -64,15 +16,9 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- possible argument values -->
-
-    <xs:simpleType name="ARG_VALUES">
-        <xs:union memberTypes="VAR_T INT_T BOOL_T STRING_T NIL_T TYPE_T LABEL_T FLOAT_T"/>
-    </xs:simpleType>
-
     <xs:complexType name="arg">
         <xs:simpleContent>
-            <xs:extension base="ARG_VALUES">
+            <xs:extension base="xs:string">
                 <xs:attribute name="type" type="ARG_TYPES" use="required"/>
             </xs:extension>
         </xs:simpleContent>
@@ -82,22 +28,17 @@
     <xs:element name="arg2" type="arg"/>
     <xs:element name="arg3" type="arg"/>
 
+
     <xs:element name="program">
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" name="instruction">
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:sequence minOccurs="0">
-                                <xs:element ref="arg1"/>
-                                <xs:sequence minOccurs="0">
-                                    <xs:element ref="arg2"/>
-                                    <xs:sequence minOccurs="0">
-                                        <xs:element ref="arg3"/>
-                                    </xs:sequence>
-                                </xs:sequence>
-                            </xs:sequence>
-                        </xs:sequence>
+                        <xs:choice minOccurs="0" maxOccurs="3">
+                            <xs:element ref="arg1" minOccurs="0"/>
+                            <xs:element ref="arg2" minOccurs="0"/>
+                            <xs:element ref="arg3" minOccurs="0"/>
+                        </xs:choice>
                         <xs:attribute name="order" type="xs:positiveInteger" use="required" />
                         <xs:attribute name="opcode" type="xs:string" use="required" />
                     </xs:complexType>
@@ -107,5 +48,9 @@
             <xs:attribute name="name" type="xs:string"/>
             <xs:attribute name="description" type="xs:string"/>
         </xs:complexType>
+        <xs:unique name="uniqueOrder">
+            <xs:selector xpath="instruction"/>
+            <xs:field xpath="@order"/>
+        </xs:unique>
     </xs:element>
 </xs:schema>
