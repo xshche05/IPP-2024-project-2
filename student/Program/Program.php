@@ -16,7 +16,7 @@ class Program
     private array $label_map;
     private int $last_order;
     private int $start_order;
-    private int $most_executed_count;
+//    private int $most_executed_count;
     public function __construct()
     {
         $this->instruction_flow = array();
@@ -104,7 +104,7 @@ class Program
                 $least_order = min($least_order, $order);
             }
         }
-        $this->most_executed_count = $most_executed;
+//        $this->most_executed_count = $most_executed;
         return $least_order;
     }
 
