@@ -16,6 +16,7 @@ pack: student/*
 	cd $(STUDENT_DIR) && zip -r $(LOGIN).zip  * -x __MACOSX/* .git/* && mv $(LOGIN).zip ../
 
 check: pack vendor
+	php8.3 vendor/bin/phpstan
 	./is_it_ok.sh $(LOGIN).zip $(TEMP_DIR) $(TASK) 
 
 run-help: interpret.php
