@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode24">
+    <instruction order="10" opcode="DEFVAR">
+        <arg1 type="var">GF@unistr</arg1>
+    </instruction>
+    <instruction order="20" opcode="READ">
+        <arg1 type="var">GF@unistr</arg1>
+        <arg2 type="type">string</arg2>
+    </instruction>
+    <instruction order="30" opcode="WRITE">
+        <arg1 type="var">GF@unistr</arg1>
+    </instruction>
+    <instruction order="31" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="40" opcode="DEFVAR">
+        <arg1 type="var">GF@unistrlen</arg1>
+    </instruction>
+    <instruction order="50" opcode="STRLEN">
+        <arg1 type="var">GF@unistrlen</arg1>
+        <arg2 type="var">GF@unistr</arg2>
+    </instruction>
+    <instruction order="60" opcode="WRITE">
+        <arg1 type="var">GF@unistrlen</arg1>
+    </instruction>
+    <instruction order="61" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="70" opcode="DEFVAR">
+        <arg1 type="var">GF@unichar</arg1>
+    </instruction>
+    <instruction order="80" opcode="GETCHAR">
+        <arg1 type="var">GF@unichar</arg1>
+        <arg2 type="var">GF@unistr</arg2>
+        <arg3 type="int">3</arg3>
+    </instruction>
+    <instruction order="90" opcode="WRITE">
+        <arg1 type="var">GF@unichar</arg1>
+    </instruction>
+    <instruction order="91" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="100" opcode="SETCHAR">
+        <arg1 type="var">GF@unistr</arg1>
+        <arg2 type="int">3</arg2>
+        <arg3 type="string">🤣</arg3>
+    </instruction>
+    <instruction order="110" opcode="WRITE">
+        <arg1 type="var">GF@unistr</arg1>
+    </instruction>
+    <instruction order="111" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="120" opcode="SETCHAR">
+        <arg1 type="var">GF@unistr</arg1>
+        <arg2 type="int">3</arg2>
+        <arg3 type="string">😅😂🤣</arg3>
+    </instruction>
+    <instruction order="130" opcode="WRITE">
+        <arg1 type="var">GF@unistr</arg1>
+    </instruction>
+    <instruction order="131" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="140" opcode="CONCAT">
+        <arg1 type="var">GF@unistr</arg1>
+        <arg2 type="var">GF@unistr</arg2>
+        <arg3 type="var">GF@unistr</arg3>
+    </instruction>
+    <instruction order="150" opcode="WRITE">
+        <arg1 type="var">GF@unistr</arg1>
+    </instruction>
+    <instruction order="151" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="160" opcode="STRLEN">
+        <arg1 type="var">GF@unistrlen</arg1>
+        <arg2 type="var">GF@unistr</arg2>
+    </instruction>
+    <instruction order="170" opcode="WRITE">
+        <arg1 type="var">GF@unistrlen</arg1>
+    </instruction>
+    <instruction order="171" opcode="WRITE">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+</program>
