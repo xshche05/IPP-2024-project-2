@@ -99,8 +99,6 @@ class Instruction
             $reflection->invokeArgs($this->executor_instance, $this->getArguments());
         } catch (TypeError $e) {
             throw new InvalidSourceStructure("Invalid argument type for instruction opcode " . $this->opcode . "\n" . $e->getMessage());
-        } catch (ReflectionException) {
-            throw new InvalidSourceStructure("Unsupported instruction opcode " . $this->opcode);
         }
         $this->execution_count++;
     }

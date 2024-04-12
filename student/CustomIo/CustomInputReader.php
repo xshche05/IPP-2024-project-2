@@ -23,7 +23,7 @@ class CustomInputReader extends FileInputReader
         return filter_var(
             $result,
             FILTER_VALIDATE_FLOAT,
-            [FILTER_NULL_ON_FAILURE, FILTER_FLAG_ALLOW_SCIENTIFIC, FILTER_FLAG_ALLOW_FRACTION]
+            FILTER_NULL_ON_FAILURE | FILTER_FLAG_ALLOW_SCIENTIFIC | FILTER_FLAG_ALLOW_FRACTION
         );
     }
 }
