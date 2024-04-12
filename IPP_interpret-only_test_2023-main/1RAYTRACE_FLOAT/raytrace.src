@@ -1,0 +1,3569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode24">
+    <instruction order="1" opcode="DEFVAR">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="2" opcode="DEFVAR">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="3" opcode="DEFVAR">
+        <arg1 type="var">GF@$C</arg1>
+    </instruction>
+    <instruction order="4" opcode="DEFVAR">
+        <arg1 type="var">GF@$D</arg1>
+    </instruction>
+    <instruction order="5" opcode="DEFVAR">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="6" opcode="DEFVAR">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="7" opcode="DEFVAR">
+        <arg1 type="var">GF@$FOR_COUNTER</arg1>
+    </instruction>
+    <instruction order="8" opcode="DEFVAR">
+        <arg1 type="var">GF@$FOR_MAX_VAL</arg1>
+    </instruction>
+    <instruction order="9" opcode="DEFVAR">
+        <arg1 type="var">GF@$SYMB1</arg1>
+    </instruction>
+    <instruction order="10" opcode="DEFVAR">
+        <arg1 type="var">GF@$SYMB2</arg1>
+    </instruction>
+    <instruction order="11" opcode="DEFVAR">
+        <arg1 type="var">GF@$DEST</arg1>
+    </instruction>
+    <instruction order="12" opcode="MOVE">
+        <arg1 type="var">GF@$FOR_COUNTER</arg1>
+        <arg2 type="int">0</arg2>
+    </instruction>
+    <instruction order="13" opcode="MOVE">
+        <arg1 type="var">GF@$FOR_MAX_VAL</arg1>
+        <arg2 type="int">0</arg2>
+    </instruction>
+    <instruction order="14" opcode="JUMP">
+        <arg1 type="label">$$main</arg1>
+    </instruction>
+    <instruction order="15" opcode="LABEL">
+        <arg1 type="label">readString</arg1>
+    </instruction>
+    <instruction order="16" opcode="READ">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="type">string</arg2>
+    </instruction>
+    <instruction order="17" opcode="RETURN"/>
+    <instruction order="18" opcode="LABEL">
+        <arg1 type="label">readInt</arg1>
+    </instruction>
+    <instruction order="19" opcode="READ">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="type">int</arg2>
+    </instruction>
+    <instruction order="20" opcode="RETURN"/>
+    <instruction order="21" opcode="LABEL">
+        <arg1 type="label">readDouble</arg1>
+    </instruction>
+    <instruction order="22" opcode="READ">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="type">float</arg2>
+    </instruction>
+    <instruction order="23" opcode="RETURN"/>
+    <instruction order="24" opcode="LABEL">
+        <arg1 type="label">readBool</arg1>
+    </instruction>
+    <instruction order="25" opcode="READ">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="type">bool</arg2>
+    </instruction>
+    <instruction order="26" opcode="RETURN"/>
+    <instruction order="27" opcode="LABEL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="28" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="29" opcode="WRITE">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="30" opcode="RETURN"/>
+    <instruction order="31" opcode="LABEL">
+        <arg1 type="label">Int2Double</arg1>
+    </instruction>
+    <instruction order="32" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="33" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="34" opcode="RETURN"/>
+    <instruction order="35" opcode="LABEL">
+        <arg1 type="label">Double2Int</arg1>
+    </instruction>
+    <instruction order="36" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="37" opcode="FLOAT2INT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="38" opcode="RETURN"/>
+    <instruction order="39" opcode="LABEL">
+        <arg1 type="label">length</arg1>
+    </instruction>
+    <instruction order="40" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="41" opcode="STRLEN">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="42" opcode="RETURN"/>
+    <instruction order="43" opcode="LABEL">
+        <arg1 type="label">substring</arg1>
+    </instruction>
+    <instruction order="44" opcode="CREATEFRAME"/>
+    <instruction order="45" opcode="PUSHFRAME"/>
+    <instruction order="46" opcode="POPS">
+        <arg1 type="var">GF@$C</arg1>
+    </instruction>
+    <instruction order="47" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="48" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="49" opcode="DEFVAR">
+        <arg1 type="var">LF@exit</arg1>
+    </instruction>
+    <instruction order="50" opcode="LT">
+        <arg1 type="var">LF@exit</arg1>
+        <arg2 type="var">GF@$B</arg2>
+        <arg3 type="int">0</arg3>
+    </instruction>
+    <instruction order="51" opcode="JUMPIFEQ">
+        <arg1 type="label">$substring_std_exit_nil</arg1>
+        <arg2 type="var">LF@exit</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="52" opcode="LT">
+        <arg1 type="var">LF@exit</arg1>
+        <arg2 type="var">GF@$C</arg2>
+        <arg3 type="int">0</arg3>
+    </instruction>
+    <instruction order="53" opcode="JUMPIFEQ">
+        <arg1 type="label">$substring_std_exit_nil</arg1>
+        <arg2 type="var">LF@exit</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="54" opcode="GT">
+        <arg1 type="var">LF@exit</arg1>
+        <arg2 type="var">GF@$B</arg2>
+        <arg3 type="var">GF@$C</arg3>
+    </instruction>
+    <instruction order="55" opcode="JUMPIFEQ">
+        <arg1 type="label">$substring_std_exit_nil</arg1>
+        <arg2 type="var">LF@exit</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="56" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="57" opcode="CALL">
+        <arg1 type="label">length</arg1>
+    </instruction>
+    <instruction order="58" opcode="LT">
+        <arg1 type="var">LF@exit</arg1>
+        <arg2 type="var">GF@$B</arg2>
+        <arg3 type="var">GF@$RET</arg3>
+    </instruction>
+    <instruction order="59" opcode="JUMPIFEQ">
+        <arg1 type="label">$substring_std_exit_nil</arg1>
+        <arg2 type="var">LF@exit</arg2>
+        <arg3 type="bool">false</arg3>
+    </instruction>
+    <instruction order="60" opcode="GT">
+        <arg1 type="var">LF@exit</arg1>
+        <arg2 type="var">GF@$C</arg2>
+        <arg3 type="var">GF@$RET</arg3>
+    </instruction>
+    <instruction order="61" opcode="JUMPIFEQ">
+        <arg1 type="label">$substring_std_exit_nil</arg1>
+        <arg2 type="var">LF@exit</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="62" opcode="MOVE">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="string"/>
+    </instruction>
+    <instruction order="63" opcode="LABEL">
+        <arg1 type="label">$substring_std_loop</arg1>
+    </instruction>
+    <instruction order="64" opcode="LT">
+        <arg1 type="var">LF@exit</arg1>
+        <arg2 type="var">GF@$B</arg2>
+        <arg3 type="var">GF@$C</arg3>
+    </instruction>
+    <instruction order="65" opcode="JUMPIFEQ">
+        <arg1 type="label">$substring_std_exit</arg1>
+        <arg2 type="var">LF@exit</arg2>
+        <arg3 type="bool">false</arg3>
+    </instruction>
+    <instruction order="66" opcode="GETCHAR">
+        <arg1 type="var">GF@$D</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="67" opcode="CONCAT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$RET</arg2>
+        <arg3 type="var">GF@$D</arg3>
+    </instruction>
+    <instruction order="68" opcode="ADD">
+        <arg1 type="var">GF@$B</arg1>
+        <arg2 type="var">GF@$B</arg2>
+        <arg3 type="int">1</arg3>
+    </instruction>
+    <instruction order="69" opcode="JUMP">
+        <arg1 type="label">$substring_std_loop</arg1>
+    </instruction>
+    <instruction order="70" opcode="LABEL">
+        <arg1 type="label">$substring_std_exit</arg1>
+    </instruction>
+    <instruction order="71" opcode="POPFRAME"/>
+    <instruction order="72" opcode="RETURN"/>
+    <instruction order="73" opcode="LABEL">
+        <arg1 type="label">$substring_std_exit_nil</arg1>
+    </instruction>
+    <instruction order="74" opcode="MOVE">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="nil">nil</arg2>
+    </instruction>
+    <instruction order="75" opcode="POPFRAME"/>
+    <instruction order="76" opcode="RETURN"/>
+    <instruction order="77" opcode="LABEL">
+        <arg1 type="label">ord</arg1>
+    </instruction>
+    <instruction order="78" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="79" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="80" opcode="CALL">
+        <arg1 type="label">length</arg1>
+    </instruction>
+    <instruction order="81" opcode="JUMPIFEQ">
+        <arg1 type="label">$ord_std_exit</arg1>
+        <arg2 type="var">GF@$RET</arg2>
+        <arg3 type="int">0</arg3>
+    </instruction>
+    <instruction order="82" opcode="STRI2INT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="int">0</arg3>
+    </instruction>
+    <instruction order="83" opcode="LABEL">
+        <arg1 type="label">$ord_std_exit</arg1>
+    </instruction>
+    <instruction order="84" opcode="RETURN"/>
+    <instruction order="85" opcode="LABEL">
+        <arg1 type="label">chr</arg1>
+    </instruction>
+    <instruction order="86" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="87" opcode="INT2CHAR">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="88" opcode="RETURN"/>
+    <instruction order="89" opcode="LABEL">
+        <arg1 type="label">$??op</arg1>
+    </instruction>
+    <instruction order="90" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="91" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="92" opcode="JUMPIFNEQ">
+        <arg1 type="label">$??op_skip</arg1>
+        <arg2 type="var">GF@$RET</arg2>
+        <arg3 type="nil">nil</arg3>
+    </instruction>
+    <instruction order="93" opcode="MOVE">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$B</arg2>
+    </instruction>
+    <instruction order="94" opcode="LABEL">
+        <arg1 type="label">$??op_skip</arg1>
+    </instruction>
+    <instruction order="95" opcode="RETURN"/>
+    <instruction order="96" opcode="LABEL">
+        <arg1 type="label">$$main</arg1>
+    </instruction>
+    <instruction order="97" opcode="CREATEFRAME"/>
+    <instruction order="98" opcode="PUSHFRAME"/>
+    <instruction order="99" opcode="JUMP">
+        <arg1 type="label">main_defvar$0</arg1>
+    </instruction>
+    <instruction order="100" opcode="LABEL">
+        <arg1 type="label">main_defvar_back$1</arg1>
+    </instruction>
+    <instruction order="101" opcode="JUMP">
+        <arg1 type="label">skip$2</arg1>
+    </instruction>
+    <instruction order="102" opcode="LABEL">
+        <arg1 type="label">print_line</arg1>
+    </instruction>
+    <instruction order="103" opcode="CREATEFRAME"/>
+    <instruction order="104" opcode="PUSHFRAME"/>
+    <instruction order="105" opcode="JUMP">
+        <arg1 type="label">defvar$3</arg1>
+    </instruction>
+    <instruction order="106" opcode="LABEL">
+        <arg1 type="label">defvar_back$4</arg1>
+    </instruction>
+    <instruction order="107" opcode="POPS">
+        <arg1 type="var">LF@width%1</arg1>
+    </instruction>
+    <instruction order="108" opcode="PUSHS">
+        <arg1 type="string">+</arg1>
+    </instruction>
+    <instruction order="109" opcode="POPS">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="110" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="111" opcode="POPS">
+        <arg1 type="var">LF@x%2</arg1>
+    </instruction>
+    <instruction order="112" opcode="LABEL">
+        <arg1 type="label">while_start$5</arg1>
+    </instruction>
+    <instruction order="113" opcode="PUSHS">
+        <arg1 type="var">LF@x%2</arg1>
+    </instruction>
+    <instruction order="114" opcode="PUSHS">
+        <arg1 type="var">LF@width%1</arg1>
+    </instruction>
+    <instruction order="115" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="116" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="117" opcode="LT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="118" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="119" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="120" opcode="JUMPIFNEQ">
+        <arg1 type="label">while_end$6</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="121" opcode="PUSHS">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="122" opcode="PUSHS">
+        <arg1 type="string">-</arg1>
+    </instruction>
+    <instruction order="123" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="124" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="125" opcode="CONCAT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="126" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="127" opcode="POPS">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="128" opcode="PUSHS">
+        <arg1 type="var">LF@x%2</arg1>
+    </instruction>
+    <instruction order="129" opcode="PUSHS">
+        <arg1 type="int">1</arg1>
+    </instruction>
+    <instruction order="130" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="131" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="132" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="133" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="134" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="135" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="136" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="137" opcode="POPS">
+        <arg1 type="var">LF@x%2</arg1>
+    </instruction>
+    <instruction order="138" opcode="JUMP">
+        <arg1 type="label">while_start$5</arg1>
+    </instruction>
+    <instruction order="139" opcode="LABEL">
+        <arg1 type="label">while_end$6</arg1>
+    </instruction>
+    <instruction order="140" opcode="PUSHS">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="141" opcode="PUSHS">
+        <arg1 type="string">+</arg1>
+    </instruction>
+    <instruction order="142" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="143" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="144" opcode="CONCAT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="145" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="146" opcode="POPS">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="147" opcode="PUSHS">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="148" opcode="CALL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="149" opcode="PUSHS">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="150" opcode="CALL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="151" opcode="JUMP">
+        <arg1 type="label">def_skip$7</arg1>
+    </instruction>
+    <instruction order="152" opcode="LABEL">
+        <arg1 type="label">defvar$3</arg1>
+    </instruction>
+    <instruction order="153" opcode="DEFVAR">
+        <arg1 type="var">LF@width%1</arg1>
+    </instruction>
+    <instruction order="154" opcode="DEFVAR">
+        <arg1 type="var">LF@line%2</arg1>
+    </instruction>
+    <instruction order="155" opcode="DEFVAR">
+        <arg1 type="var">LF@x%2</arg1>
+    </instruction>
+    <instruction order="156" opcode="JUMP">
+        <arg1 type="label">defvar_back$4</arg1>
+    </instruction>
+    <instruction order="157" opcode="LABEL">
+        <arg1 type="label">def_skip$7</arg1>
+    </instruction>
+    <instruction order="158" opcode="POPFRAME"/>
+    <instruction order="159" opcode="RETURN"/>
+    <instruction order="160" opcode="LABEL">
+        <arg1 type="label">skip$2</arg1>
+    </instruction>
+    <instruction order="161" opcode="JUMP">
+        <arg1 type="label">skip$8</arg1>
+    </instruction>
+    <instruction order="162" opcode="LABEL">
+        <arg1 type="label">pixel_color</arg1>
+    </instruction>
+    <instruction order="163" opcode="CREATEFRAME"/>
+    <instruction order="164" opcode="PUSHFRAME"/>
+    <instruction order="165" opcode="JUMP">
+        <arg1 type="label">defvar$9</arg1>
+    </instruction>
+    <instruction order="166" opcode="LABEL">
+        <arg1 type="label">defvar_back$A</arg1>
+    </instruction>
+    <instruction order="167" opcode="POPS">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="168" opcode="PUSHS">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="169" opcode="PUSHS">
+        <arg1 type="float">0.9000000000</arg1>
+    </instruction>
+    <instruction order="170" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="171" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="172" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="173" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="174" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="175" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$C</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="176" opcode="PUSHS">
+        <arg1 type="string">\035</arg1>
+    </instruction>
+    <instruction order="177" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="178" opcode="POPFRAME"/>
+    <instruction order="179" opcode="RETURN"/>
+    <instruction order="180" opcode="JUMP">
+        <arg1 type="label">branch_end$B</arg1>
+    </instruction>
+    <instruction order="181" opcode="LABEL">
+        <arg1 type="label">branch_skip$C</arg1>
+    </instruction>
+    <instruction order="182" opcode="PUSHS">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="183" opcode="PUSHS">
+        <arg1 type="float">0.7000000000</arg1>
+    </instruction>
+    <instruction order="184" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="185" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="186" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="187" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="188" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="189" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$D</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="190" opcode="PUSHS">
+        <arg1 type="string">*</arg1>
+    </instruction>
+    <instruction order="191" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="192" opcode="POPFRAME"/>
+    <instruction order="193" opcode="RETURN"/>
+    <instruction order="194" opcode="JUMP">
+        <arg1 type="label">branch_end$B</arg1>
+    </instruction>
+    <instruction order="195" opcode="LABEL">
+        <arg1 type="label">branch_skip$D</arg1>
+    </instruction>
+    <instruction order="196" opcode="PUSHS">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="197" opcode="PUSHS">
+        <arg1 type="float">0.5000000000</arg1>
+    </instruction>
+    <instruction order="198" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="199" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="200" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="201" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="202" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="203" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$E</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="204" opcode="PUSHS">
+        <arg1 type="string">+</arg1>
+    </instruction>
+    <instruction order="205" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="206" opcode="POPFRAME"/>
+    <instruction order="207" opcode="RETURN"/>
+    <instruction order="208" opcode="JUMP">
+        <arg1 type="label">branch_end$B</arg1>
+    </instruction>
+    <instruction order="209" opcode="LABEL">
+        <arg1 type="label">branch_skip$E</arg1>
+    </instruction>
+    <instruction order="210" opcode="PUSHS">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="211" opcode="PUSHS">
+        <arg1 type="float">0.3000000000</arg1>
+    </instruction>
+    <instruction order="212" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="213" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="214" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="215" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="216" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="217" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$F</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="218" opcode="PUSHS">
+        <arg1 type="string">-</arg1>
+    </instruction>
+    <instruction order="219" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="220" opcode="POPFRAME"/>
+    <instruction order="221" opcode="RETURN"/>
+    <instruction order="222" opcode="JUMP">
+        <arg1 type="label">branch_end$B</arg1>
+    </instruction>
+    <instruction order="223" opcode="LABEL">
+        <arg1 type="label">branch_skip$F</arg1>
+    </instruction>
+    <instruction order="224" opcode="PUSHS">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="225" opcode="PUSHS">
+        <arg1 type="float">0.1000000000</arg1>
+    </instruction>
+    <instruction order="226" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="227" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="228" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="229" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="230" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="231" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$10</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="232" opcode="PUSHS">
+        <arg1 type="string">.</arg1>
+    </instruction>
+    <instruction order="233" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="234" opcode="POPFRAME"/>
+    <instruction order="235" opcode="RETURN"/>
+    <instruction order="236" opcode="JUMP">
+        <arg1 type="label">branch_end$B</arg1>
+    </instruction>
+    <instruction order="237" opcode="LABEL">
+        <arg1 type="label">branch_skip$10</arg1>
+    </instruction>
+    <instruction order="238" opcode="PUSHS">
+        <arg1 type="string">\032</arg1>
+    </instruction>
+    <instruction order="239" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="240" opcode="POPFRAME"/>
+    <instruction order="241" opcode="RETURN"/>
+    <instruction order="242" opcode="LABEL">
+        <arg1 type="label">branch_end$B</arg1>
+    </instruction>
+    <instruction order="243" opcode="JUMP">
+        <arg1 type="label">def_skip$11</arg1>
+    </instruction>
+    <instruction order="244" opcode="LABEL">
+        <arg1 type="label">defvar$9</arg1>
+    </instruction>
+    <instruction order="245" opcode="DEFVAR">
+        <arg1 type="var">LF@lightness%1</arg1>
+    </instruction>
+    <instruction order="246" opcode="JUMP">
+        <arg1 type="label">defvar_back$A</arg1>
+    </instruction>
+    <instruction order="247" opcode="LABEL">
+        <arg1 type="label">def_skip$11</arg1>
+    </instruction>
+    <instruction order="248" opcode="LABEL">
+        <arg1 type="label">skip$8</arg1>
+    </instruction>
+    <instruction order="249" opcode="JUMP">
+        <arg1 type="label">skip$12</arg1>
+    </instruction>
+    <instruction order="250" opcode="LABEL">
+        <arg1 type="label">abs</arg1>
+    </instruction>
+    <instruction order="251" opcode="CREATEFRAME"/>
+    <instruction order="252" opcode="PUSHFRAME"/>
+    <instruction order="253" opcode="JUMP">
+        <arg1 type="label">defvar$13</arg1>
+    </instruction>
+    <instruction order="254" opcode="LABEL">
+        <arg1 type="label">defvar_back$14</arg1>
+    </instruction>
+    <instruction order="255" opcode="POPS">
+        <arg1 type="var">LF@x%1</arg1>
+    </instruction>
+    <instruction order="256" opcode="PUSHS">
+        <arg1 type="var">LF@x%1</arg1>
+    </instruction>
+    <instruction order="257" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="258" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="259" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="260" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="261" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="262" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="263" opcode="LT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="264" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="265" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="266" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$16</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="267" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="268" opcode="PUSHS">
+        <arg1 type="var">LF@x%1</arg1>
+    </instruction>
+    <instruction order="269" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="270" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="271" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="272" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="273" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="274" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="275" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="276" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="277" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="278" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="279" opcode="POPFRAME"/>
+    <instruction order="280" opcode="RETURN"/>
+    <instruction order="281" opcode="JUMP">
+        <arg1 type="label">branch_end$15</arg1>
+    </instruction>
+    <instruction order="282" opcode="LABEL">
+        <arg1 type="label">branch_skip$16</arg1>
+    </instruction>
+    <instruction order="283" opcode="PUSHS">
+        <arg1 type="var">LF@x%1</arg1>
+    </instruction>
+    <instruction order="284" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="285" opcode="POPFRAME"/>
+    <instruction order="286" opcode="RETURN"/>
+    <instruction order="287" opcode="LABEL">
+        <arg1 type="label">branch_end$15</arg1>
+    </instruction>
+    <instruction order="288" opcode="JUMP">
+        <arg1 type="label">def_skip$17</arg1>
+    </instruction>
+    <instruction order="289" opcode="LABEL">
+        <arg1 type="label">defvar$13</arg1>
+    </instruction>
+    <instruction order="290" opcode="DEFVAR">
+        <arg1 type="var">LF@x%1</arg1>
+    </instruction>
+    <instruction order="291" opcode="JUMP">
+        <arg1 type="label">defvar_back$14</arg1>
+    </instruction>
+    <instruction order="292" opcode="LABEL">
+        <arg1 type="label">def_skip$17</arg1>
+    </instruction>
+    <instruction order="293" opcode="LABEL">
+        <arg1 type="label">skip$12</arg1>
+    </instruction>
+    <instruction order="294" opcode="JUMP">
+        <arg1 type="label">skip$18</arg1>
+    </instruction>
+    <instruction order="295" opcode="LABEL">
+        <arg1 type="label">yiplus1</arg1>
+    </instruction>
+    <instruction order="296" opcode="CREATEFRAME"/>
+    <instruction order="297" opcode="PUSHFRAME"/>
+    <instruction order="298" opcode="JUMP">
+        <arg1 type="label">defvar$19</arg1>
+    </instruction>
+    <instruction order="299" opcode="LABEL">
+        <arg1 type="label">defvar_back$1A</arg1>
+    </instruction>
+    <instruction order="300" opcode="POPS">
+        <arg1 type="var">LF@d%1</arg1>
+    </instruction>
+    <instruction order="301" opcode="PUSHS">
+        <arg1 type="var">LF@d%1</arg1>
+    </instruction>
+    <instruction order="302" opcode="POPS">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="303" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="304" opcode="POPS">
+        <arg1 type="var">LF@delta%2</arg1>
+    </instruction>
+    <instruction order="305" opcode="LABEL">
+        <arg1 type="label">while_start$1B</arg1>
+    </instruction>
+    <instruction order="306" opcode="PUSHS">
+        <arg1 type="var">LF@delta%2</arg1>
+    </instruction>
+    <instruction order="307" opcode="PUSHS">
+        <arg1 type="float">0.0001000000</arg1>
+    </instruction>
+    <instruction order="308" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="309" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="310" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="311" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="312" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="313" opcode="JUMPIFNEQ">
+        <arg1 type="label">while_end$1C</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="314" opcode="PUSHS">
+        <arg1 type="float">0.5000000000</arg1>
+    </instruction>
+    <instruction order="315" opcode="PUSHS">
+        <arg1 type="var">LF@d%1</arg1>
+    </instruction>
+    <instruction order="316" opcode="PUSHS">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="317" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="318" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="319" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="320" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="321" opcode="PUSHS">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="322" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="323" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="324" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="325" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="326" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="327" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="328" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="329" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="330" opcode="POPS">
+        <arg1 type="var">LF@yip1%3</arg1>
+    </instruction>
+    <instruction order="331" opcode="PUSHS">
+        <arg1 type="var">LF@yip1%3</arg1>
+    </instruction>
+    <instruction order="332" opcode="PUSHS">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="333" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="334" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="335" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="336" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="337" opcode="POPS">
+        <arg1 type="var">LF@delta%2</arg1>
+    </instruction>
+    <instruction order="338" opcode="PUSHS">
+        <arg1 type="var">LF@delta%2</arg1>
+    </instruction>
+    <instruction order="339" opcode="CALL">
+        <arg1 type="label">abs</arg1>
+    </instruction>
+    <instruction order="340" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="341" opcode="POPS">
+        <arg1 type="var">LF@delta%2</arg1>
+    </instruction>
+    <instruction order="342" opcode="PUSHS">
+        <arg1 type="var">LF@yip1%3</arg1>
+    </instruction>
+    <instruction order="343" opcode="POPS">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="344" opcode="JUMP">
+        <arg1 type="label">while_start$1B</arg1>
+    </instruction>
+    <instruction order="345" opcode="LABEL">
+        <arg1 type="label">while_end$1C</arg1>
+    </instruction>
+    <instruction order="346" opcode="PUSHS">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="347" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="348" opcode="POPFRAME"/>
+    <instruction order="349" opcode="RETURN"/>
+    <instruction order="350" opcode="JUMP">
+        <arg1 type="label">def_skip$1D</arg1>
+    </instruction>
+    <instruction order="351" opcode="LABEL">
+        <arg1 type="label">defvar$19</arg1>
+    </instruction>
+    <instruction order="352" opcode="DEFVAR">
+        <arg1 type="var">LF@d%1</arg1>
+    </instruction>
+    <instruction order="353" opcode="DEFVAR">
+        <arg1 type="var">LF@yi%2</arg1>
+    </instruction>
+    <instruction order="354" opcode="DEFVAR">
+        <arg1 type="var">LF@delta%2</arg1>
+    </instruction>
+    <instruction order="355" opcode="DEFVAR">
+        <arg1 type="var">LF@yip1%3</arg1>
+    </instruction>
+    <instruction order="356" opcode="JUMP">
+        <arg1 type="label">defvar_back$1A</arg1>
+    </instruction>
+    <instruction order="357" opcode="LABEL">
+        <arg1 type="label">def_skip$1D</arg1>
+    </instruction>
+    <instruction order="358" opcode="LABEL">
+        <arg1 type="label">skip$18</arg1>
+    </instruction>
+    <instruction order="359" opcode="JUMP">
+        <arg1 type="label">skip$1E</arg1>
+    </instruction>
+    <instruction order="360" opcode="LABEL">
+        <arg1 type="label">is_in_range</arg1>
+    </instruction>
+    <instruction order="361" opcode="CREATEFRAME"/>
+    <instruction order="362" opcode="PUSHFRAME"/>
+    <instruction order="363" opcode="JUMP">
+        <arg1 type="label">defvar$1F</arg1>
+    </instruction>
+    <instruction order="364" opcode="LABEL">
+        <arg1 type="label">defvar_back$20</arg1>
+    </instruction>
+    <instruction order="365" opcode="POPS">
+        <arg1 type="var">LF@max%1</arg1>
+    </instruction>
+    <instruction order="366" opcode="POPS">
+        <arg1 type="var">LF@min%1</arg1>
+    </instruction>
+    <instruction order="367" opcode="POPS">
+        <arg1 type="var">LF@val%1</arg1>
+    </instruction>
+    <instruction order="368" opcode="PUSHS">
+        <arg1 type="var">LF@val%1</arg1>
+    </instruction>
+    <instruction order="369" opcode="PUSHS">
+        <arg1 type="var">LF@min%1</arg1>
+    </instruction>
+    <instruction order="370" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="371" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="372" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="373" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="374" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="375" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$22</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="376" opcode="PUSHS">
+        <arg1 type="var">LF@val%1</arg1>
+    </instruction>
+    <instruction order="377" opcode="PUSHS">
+        <arg1 type="var">LF@max%1</arg1>
+    </instruction>
+    <instruction order="378" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="379" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="380" opcode="LT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="381" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="382" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="383" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$24</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="384" opcode="PUSHS">
+        <arg1 type="int">1</arg1>
+    </instruction>
+    <instruction order="385" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="386" opcode="POPFRAME"/>
+    <instruction order="387" opcode="RETURN"/>
+    <instruction order="388" opcode="JUMP">
+        <arg1 type="label">branch_end$23</arg1>
+    </instruction>
+    <instruction order="389" opcode="LABEL">
+        <arg1 type="label">branch_skip$24</arg1>
+    </instruction>
+    <instruction order="390" opcode="LABEL">
+        <arg1 type="label">branch_end$23</arg1>
+    </instruction>
+    <instruction order="391" opcode="JUMP">
+        <arg1 type="label">branch_end$21</arg1>
+    </instruction>
+    <instruction order="392" opcode="LABEL">
+        <arg1 type="label">branch_skip$22</arg1>
+    </instruction>
+    <instruction order="393" opcode="LABEL">
+        <arg1 type="label">branch_end$21</arg1>
+    </instruction>
+    <instruction order="394" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="395" opcode="POPS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="396" opcode="POPFRAME"/>
+    <instruction order="397" opcode="RETURN"/>
+    <instruction order="398" opcode="JUMP">
+        <arg1 type="label">def_skip$25</arg1>
+    </instruction>
+    <instruction order="399" opcode="LABEL">
+        <arg1 type="label">defvar$1F</arg1>
+    </instruction>
+    <instruction order="400" opcode="DEFVAR">
+        <arg1 type="var">LF@val%1</arg1>
+    </instruction>
+    <instruction order="401" opcode="DEFVAR">
+        <arg1 type="var">LF@min%1</arg1>
+    </instruction>
+    <instruction order="402" opcode="DEFVAR">
+        <arg1 type="var">LF@max%1</arg1>
+    </instruction>
+    <instruction order="403" opcode="JUMP">
+        <arg1 type="label">defvar_back$20</arg1>
+    </instruction>
+    <instruction order="404" opcode="LABEL">
+        <arg1 type="label">def_skip$25</arg1>
+    </instruction>
+    <instruction order="405" opcode="LABEL">
+        <arg1 type="label">skip$1E</arg1>
+    </instruction>
+    <instruction order="406" opcode="PUSHS">
+        <arg1 type="string">ifj-raytracer,\032vykresli\0323\032koule</arg1>
+    </instruction>
+    <instruction order="407" opcode="CALL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="408" opcode="PUSHS">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="409" opcode="CALL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="410" opcode="PUSHS">
+        <arg1 type="float">100.0000000000</arg1>
+    </instruction>
+    <instruction order="411" opcode="POPS">
+        <arg1 type="var">GF@resx</arg1>
+    </instruction>
+    <instruction order="412" opcode="PUSHS">
+        <arg1 type="float">100.0000000000</arg1>
+    </instruction>
+    <instruction order="413" opcode="POPS">
+        <arg1 type="var">GF@resy</arg1>
+    </instruction>
+    <instruction order="414" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="415" opcode="POPS">
+        <arg1 type="var">GF@posx</arg1>
+    </instruction>
+    <instruction order="416" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="417" opcode="POPS">
+        <arg1 type="var">GF@posy</arg1>
+    </instruction>
+    <instruction order="418" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="419" opcode="PUSHS">
+        <arg1 type="float">20.0000000000</arg1>
+    </instruction>
+    <instruction order="420" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="421" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="422" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="423" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="424" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="425" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="426" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="427" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="428" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="429" opcode="POPS">
+        <arg1 type="var">GF@posz</arg1>
+    </instruction>
+    <instruction order="430" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="431" opcode="POPS">
+        <arg1 type="var">GF@spherex</arg1>
+    </instruction>
+    <instruction order="432" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="433" opcode="POPS">
+        <arg1 type="var">GF@spherey</arg1>
+    </instruction>
+    <instruction order="434" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="435" opcode="POPS">
+        <arg1 type="var">GF@spherez</arg1>
+    </instruction>
+    <instruction order="436" opcode="PUSHS">
+        <arg1 type="float">4.0000000000</arg1>
+    </instruction>
+    <instruction order="437" opcode="POPS">
+        <arg1 type="var">GF@sphereradius</arg1>
+    </instruction>
+    <instruction order="438" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="439" opcode="PUSHS">
+        <arg1 type="float">5.0000000000</arg1>
+    </instruction>
+    <instruction order="440" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="441" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="442" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="443" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="444" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="445" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="446" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="447" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="448" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="449" opcode="POPS">
+        <arg1 type="var">GF@lightx</arg1>
+    </instruction>
+    <instruction order="450" opcode="PUSHS">
+        <arg1 type="float">5.0000000000</arg1>
+    </instruction>
+    <instruction order="451" opcode="POPS">
+        <arg1 type="var">GF@lighty</arg1>
+    </instruction>
+    <instruction order="452" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="453" opcode="PUSHS">
+        <arg1 type="float">11.0000000000</arg1>
+    </instruction>
+    <instruction order="454" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="455" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="456" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="457" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="458" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="459" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="460" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="461" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="462" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="463" opcode="POPS">
+        <arg1 type="var">GF@lightz</arg1>
+    </instruction>
+    <instruction order="464" opcode="PUSHS">
+        <arg1 type="string">+</arg1>
+    </instruction>
+    <instruction order="465" opcode="POPS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="466" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="467" opcode="POPS">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="468" opcode="PUSHS">
+        <arg1 type="float">3.0000000000</arg1>
+    </instruction>
+    <instruction order="469" opcode="POPS">
+        <arg1 type="var">GF@y</arg1>
+    </instruction>
+    <instruction order="470" opcode="PUSHS">
+        <arg1 type="var">GF@resx</arg1>
+    </instruction>
+    <instruction order="471" opcode="CALL">
+        <arg1 type="label">print_line</arg1>
+    </instruction>
+    <instruction order="472" opcode="LABEL">
+        <arg1 type="label">while_start$26</arg1>
+    </instruction>
+    <instruction order="473" opcode="PUSHS">
+        <arg1 type="var">GF@y</arg1>
+    </instruction>
+    <instruction order="474" opcode="PUSHS">
+        <arg1 type="var">GF@resy</arg1>
+    </instruction>
+    <instruction order="475" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="476" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="477" opcode="LT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="478" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="479" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="480" opcode="JUMPIFNEQ">
+        <arg1 type="label">while_end$27</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="481" opcode="PUSHS">
+        <arg1 type="string">|</arg1>
+    </instruction>
+    <instruction order="482" opcode="POPS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="483" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="484" opcode="POPS">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="485" opcode="LABEL">
+        <arg1 type="label">while_start$28</arg1>
+    </instruction>
+    <instruction order="486" opcode="PUSHS">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="487" opcode="PUSHS">
+        <arg1 type="var">GF@resx</arg1>
+    </instruction>
+    <instruction order="488" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="489" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="490" opcode="LT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="491" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="492" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="493" opcode="JUMPIFNEQ">
+        <arg1 type="label">while_end$29</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="494" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="495" opcode="PUSHS">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="496" opcode="PUSHS">
+        <arg1 type="float">2.0000000000</arg1>
+    </instruction>
+    <instruction order="497" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="498" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="499" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="500" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="501" opcode="PUSHS">
+        <arg1 type="var">GF@resx</arg1>
+    </instruction>
+    <instruction order="502" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="503" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="504" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="505" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="506" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="507" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="508" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="509" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="510" opcode="PUSHS">
+        <arg1 type="float">7.0000000000</arg1>
+    </instruction>
+    <instruction order="511" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="512" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="513" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="514" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="515" opcode="POPS">
+        <arg1 type="var">LF@tarx%2</arg1>
+    </instruction>
+    <instruction order="516" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="517" opcode="PUSHS">
+        <arg1 type="var">GF@y</arg1>
+    </instruction>
+    <instruction order="518" opcode="PUSHS">
+        <arg1 type="float">2.0000000000</arg1>
+    </instruction>
+    <instruction order="519" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="520" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="521" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="522" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="523" opcode="PUSHS">
+        <arg1 type="var">GF@resy</arg1>
+    </instruction>
+    <instruction order="524" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="525" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="526" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="527" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="528" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="529" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="530" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="531" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="532" opcode="PUSHS">
+        <arg1 type="float">5.0000000000</arg1>
+    </instruction>
+    <instruction order="533" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="534" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="535" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="536" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="537" opcode="POPS">
+        <arg1 type="var">LF@tary%2</arg1>
+    </instruction>
+    <instruction order="538" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="539" opcode="POPS">
+        <arg1 type="var">LF@tarz%2</arg1>
+    </instruction>
+    <instruction order="540" opcode="PUSHS">
+        <arg1 type="var">LF@tarx%2</arg1>
+    </instruction>
+    <instruction order="541" opcode="PUSHS">
+        <arg1 type="var">GF@posx</arg1>
+    </instruction>
+    <instruction order="542" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="543" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="544" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="545" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="546" opcode="POPS">
+        <arg1 type="var">LF@rayx%2</arg1>
+    </instruction>
+    <instruction order="547" opcode="PUSHS">
+        <arg1 type="var">LF@tary%2</arg1>
+    </instruction>
+    <instruction order="548" opcode="PUSHS">
+        <arg1 type="var">GF@posy</arg1>
+    </instruction>
+    <instruction order="549" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="550" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="551" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="552" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="553" opcode="POPS">
+        <arg1 type="var">LF@rayy%2</arg1>
+    </instruction>
+    <instruction order="554" opcode="PUSHS">
+        <arg1 type="var">LF@tarz%2</arg1>
+    </instruction>
+    <instruction order="555" opcode="PUSHS">
+        <arg1 type="var">GF@posz</arg1>
+    </instruction>
+    <instruction order="556" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="557" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="558" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="559" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="560" opcode="POPS">
+        <arg1 type="var">LF@rayz%2</arg1>
+    </instruction>
+    <instruction order="561" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="562" opcode="POPS">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="563" opcode="PUSHS">
+        <arg1 type="float">9999.0000000000</arg1>
+    </instruction>
+    <instruction order="564" opcode="POPS">
+        <arg1 type="var">LF@z%2</arg1>
+    </instruction>
+    <instruction order="565" opcode="PUSHS">
+        <arg1 type="string">\032</arg1>
+    </instruction>
+    <instruction order="566" opcode="POPS">
+        <arg1 type="var">LF@pixel%2</arg1>
+    </instruction>
+    <instruction order="567" opcode="LABEL">
+        <arg1 type="label">while_start$2A</arg1>
+    </instruction>
+    <instruction order="568" opcode="PUSHS">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="569" opcode="PUSHS">
+        <arg1 type="int">3</arg1>
+    </instruction>
+    <instruction order="570" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="571" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="572" opcode="LT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="573" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="574" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="575" opcode="JUMPIFNEQ">
+        <arg1 type="label">while_end$2B</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="576" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="577" opcode="POPS">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="578" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="579" opcode="POPS">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="580" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="581" opcode="POPS">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="582" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="583" opcode="POPS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="584" opcode="PUSHS">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="585" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="586" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="587" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="588" opcode="EQ">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="589" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="590" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="591" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$2D</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="592" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="593" opcode="PUSHS">
+        <arg1 type="float">5.0000000000</arg1>
+    </instruction>
+    <instruction order="594" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="595" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="596" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="597" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="598" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="599" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="600" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="601" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="602" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="603" opcode="POPS">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="604" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="605" opcode="PUSHS">
+        <arg1 type="float">3.0000000000</arg1>
+    </instruction>
+    <instruction order="606" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="607" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="608" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="609" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="610" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="611" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="612" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="613" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="614" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="615" opcode="POPS">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="616" opcode="PUSHS">
+        <arg1 type="float">6.0000000000</arg1>
+    </instruction>
+    <instruction order="617" opcode="POPS">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="618" opcode="PUSHS">
+        <arg1 type="float">3.0000000000</arg1>
+    </instruction>
+    <instruction order="619" opcode="POPS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="620" opcode="JUMP">
+        <arg1 type="label">branch_end$2C</arg1>
+    </instruction>
+    <instruction order="621" opcode="LABEL">
+        <arg1 type="label">branch_skip$2D</arg1>
+    </instruction>
+    <instruction order="622" opcode="PUSHS">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="623" opcode="PUSHS">
+        <arg1 type="int">1</arg1>
+    </instruction>
+    <instruction order="624" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="625" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="626" opcode="EQ">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="627" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="628" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="629" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$2E</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="630" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="631" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="632" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="633" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="634" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="635" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="636" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="637" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="638" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="639" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="640" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="641" opcode="POPS">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="642" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="643" opcode="POPS">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="644" opcode="PUSHS">
+        <arg1 type="float">10.0000000000</arg1>
+    </instruction>
+    <instruction order="645" opcode="POPS">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="646" opcode="PUSHS">
+        <arg1 type="float">5.0000000000</arg1>
+    </instruction>
+    <instruction order="647" opcode="POPS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="648" opcode="JUMP">
+        <arg1 type="label">branch_end$2C</arg1>
+    </instruction>
+    <instruction order="649" opcode="LABEL">
+        <arg1 type="label">branch_skip$2E</arg1>
+    </instruction>
+    <instruction order="650" opcode="PUSHS">
+        <arg1 type="float">5.0000000000</arg1>
+    </instruction>
+    <instruction order="651" opcode="POPS">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="652" opcode="PUSHS">
+        <arg1 type="int">0</arg1>
+    </instruction>
+    <instruction order="653" opcode="PUSHS">
+        <arg1 type="float">3.0000000000</arg1>
+    </instruction>
+    <instruction order="654" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="655" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="656" opcode="INT2FLOAT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+    </instruction>
+    <instruction order="657" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="658" opcode="PUSHS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="659" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="660" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="661" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="662" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="663" opcode="POPS">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="664" opcode="PUSHS">
+        <arg1 type="float">20.0000000000</arg1>
+    </instruction>
+    <instruction order="665" opcode="POPS">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="666" opcode="PUSHS">
+        <arg1 type="float">8.0000000000</arg1>
+    </instruction>
+    <instruction order="667" opcode="POPS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="668" opcode="LABEL">
+        <arg1 type="label">branch_end$2C</arg1>
+    </instruction>
+    <instruction order="669" opcode="PUSHS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="670" opcode="PUSHS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="671" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="672" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="673" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="674" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="675" opcode="POPS">
+        <arg1 type="var">LF@sphereradius2%3</arg1>
+    </instruction>
+    <instruction order="676" opcode="PUSHS">
+        <arg1 type="var">GF@posx</arg1>
+    </instruction>
+    <instruction order="677" opcode="PUSHS">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="678" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="679" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="680" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="681" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="682" opcode="POPS">
+        <arg1 type="var">LF@ocx%3</arg1>
+    </instruction>
+    <instruction order="683" opcode="PUSHS">
+        <arg1 type="var">GF@posy</arg1>
+    </instruction>
+    <instruction order="684" opcode="PUSHS">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="685" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="686" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="687" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="688" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="689" opcode="POPS">
+        <arg1 type="var">LF@ocy%3</arg1>
+    </instruction>
+    <instruction order="690" opcode="PUSHS">
+        <arg1 type="var">GF@posz</arg1>
+    </instruction>
+    <instruction order="691" opcode="PUSHS">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="692" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="693" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="694" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="695" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="696" opcode="POPS">
+        <arg1 type="var">LF@ocz%3</arg1>
+    </instruction>
+    <instruction order="697" opcode="PUSHS">
+        <arg1 type="var">LF@rayx%2</arg1>
+    </instruction>
+    <instruction order="698" opcode="PUSHS">
+        <arg1 type="var">LF@rayx%2</arg1>
+    </instruction>
+    <instruction order="699" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="700" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="701" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="702" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="703" opcode="PUSHS">
+        <arg1 type="var">LF@rayy%2</arg1>
+    </instruction>
+    <instruction order="704" opcode="PUSHS">
+        <arg1 type="var">LF@rayy%2</arg1>
+    </instruction>
+    <instruction order="705" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="706" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="707" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="708" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="709" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="710" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="711" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="712" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="713" opcode="PUSHS">
+        <arg1 type="var">LF@rayz%2</arg1>
+    </instruction>
+    <instruction order="714" opcode="PUSHS">
+        <arg1 type="var">LF@rayz%2</arg1>
+    </instruction>
+    <instruction order="715" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="716" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="717" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="718" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="719" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="720" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="721" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="722" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="723" opcode="POPS">
+        <arg1 type="var">LF@a%3</arg1>
+    </instruction>
+    <instruction order="724" opcode="PUSHS">
+        <arg1 type="float">2.0000000000</arg1>
+    </instruction>
+    <instruction order="725" opcode="PUSHS">
+        <arg1 type="var">LF@rayx%2</arg1>
+    </instruction>
+    <instruction order="726" opcode="PUSHS">
+        <arg1 type="var">LF@ocx%3</arg1>
+    </instruction>
+    <instruction order="727" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="728" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="729" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="730" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="731" opcode="PUSHS">
+        <arg1 type="var">LF@rayy%2</arg1>
+    </instruction>
+    <instruction order="732" opcode="PUSHS">
+        <arg1 type="var">LF@ocy%3</arg1>
+    </instruction>
+    <instruction order="733" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="734" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="735" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="736" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="737" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="738" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="739" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="740" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="741" opcode="PUSHS">
+        <arg1 type="var">LF@rayz%2</arg1>
+    </instruction>
+    <instruction order="742" opcode="PUSHS">
+        <arg1 type="var">LF@ocz%3</arg1>
+    </instruction>
+    <instruction order="743" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="744" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="745" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="746" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="747" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="748" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="749" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="750" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="751" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="752" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="753" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="754" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="755" opcode="POPS">
+        <arg1 type="var">LF@b%3</arg1>
+    </instruction>
+    <instruction order="756" opcode="PUSHS">
+        <arg1 type="var">LF@ocx%3</arg1>
+    </instruction>
+    <instruction order="757" opcode="PUSHS">
+        <arg1 type="var">LF@ocx%3</arg1>
+    </instruction>
+    <instruction order="758" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="759" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="760" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="761" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="762" opcode="PUSHS">
+        <arg1 type="var">LF@ocy%3</arg1>
+    </instruction>
+    <instruction order="763" opcode="PUSHS">
+        <arg1 type="var">LF@ocy%3</arg1>
+    </instruction>
+    <instruction order="764" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="765" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="766" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="767" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="768" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="769" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="770" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="771" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="772" opcode="PUSHS">
+        <arg1 type="var">LF@ocz%3</arg1>
+    </instruction>
+    <instruction order="773" opcode="PUSHS">
+        <arg1 type="var">LF@ocz%3</arg1>
+    </instruction>
+    <instruction order="774" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="775" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="776" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="777" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="778" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="779" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="780" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="781" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="782" opcode="PUSHS">
+        <arg1 type="var">LF@sphereradius2%3</arg1>
+    </instruction>
+    <instruction order="783" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="784" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="785" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="786" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="787" opcode="POPS">
+        <arg1 type="var">LF@c%3</arg1>
+    </instruction>
+    <instruction order="788" opcode="PUSHS">
+        <arg1 type="var">LF@b%3</arg1>
+    </instruction>
+    <instruction order="789" opcode="PUSHS">
+        <arg1 type="var">LF@b%3</arg1>
+    </instruction>
+    <instruction order="790" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="791" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="792" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="793" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="794" opcode="PUSHS">
+        <arg1 type="float">4.0000000000</arg1>
+    </instruction>
+    <instruction order="795" opcode="PUSHS">
+        <arg1 type="var">LF@a%3</arg1>
+    </instruction>
+    <instruction order="796" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="797" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="798" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="799" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="800" opcode="PUSHS">
+        <arg1 type="var">LF@c%3</arg1>
+    </instruction>
+    <instruction order="801" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="802" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="803" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="804" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="805" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="806" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="807" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="808" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="809" opcode="POPS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="810" opcode="PUSHS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="811" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="812" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="813" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="814" opcode="GT">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="815" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="816" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="817" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$30</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="818" opcode="PUSHS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="819" opcode="CALL">
+        <arg1 type="label">yiplus1</arg1>
+    </instruction>
+    <instruction order="820" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="821" opcode="POPS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="822" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="823" opcode="PUSHS">
+        <arg1 type="var">LF@b%3</arg1>
+    </instruction>
+    <instruction order="824" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="825" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="826" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="827" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="828" opcode="PUSHS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="829" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="830" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="831" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="832" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="833" opcode="PUSHS">
+        <arg1 type="float">2.0000000000</arg1>
+    </instruction>
+    <instruction order="834" opcode="PUSHS">
+        <arg1 type="var">LF@a%3</arg1>
+    </instruction>
+    <instruction order="835" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="836" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="837" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="838" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="839" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="840" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="841" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="842" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="843" opcode="POPS">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="844" opcode="PUSHS">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="845" opcode="PUSHS">
+        <arg1 type="float">0.0000000000</arg1>
+    </instruction>
+    <instruction order="846" opcode="PUSHS">
+        <arg1 type="var">LF@z%2</arg1>
+    </instruction>
+    <instruction order="847" opcode="CALL">
+        <arg1 type="label">is_in_range</arg1>
+    </instruction>
+    <instruction order="848" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="849" opcode="POPS">
+        <arg1 type="var">LF@in_range%4</arg1>
+    </instruction>
+    <instruction order="850" opcode="PUSHS">
+        <arg1 type="var">LF@in_range%4</arg1>
+    </instruction>
+    <instruction order="851" opcode="PUSHS">
+        <arg1 type="int">1</arg1>
+    </instruction>
+    <instruction order="852" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="853" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="854" opcode="EQ">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="855" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="856" opcode="POPS">
+        <arg1 type="var">GF@$COND</arg1>
+    </instruction>
+    <instruction order="857" opcode="JUMPIFNEQ">
+        <arg1 type="label">branch_skip$32</arg1>
+        <arg2 type="var">GF@$COND</arg2>
+        <arg3 type="bool">true</arg3>
+    </instruction>
+    <instruction order="858" opcode="PUSHS">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="859" opcode="POPS">
+        <arg1 type="var">LF@z%2</arg1>
+    </instruction>
+    <instruction order="860" opcode="PUSHS">
+        <arg1 type="var">LF@rayx%2</arg1>
+    </instruction>
+    <instruction order="861" opcode="PUSHS">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="862" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="863" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="864" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="865" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="866" opcode="PUSHS">
+        <arg1 type="var">GF@posx</arg1>
+    </instruction>
+    <instruction order="867" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="868" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="869" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="870" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="871" opcode="POPS">
+        <arg1 type="var">LF@intersectionx%5</arg1>
+    </instruction>
+    <instruction order="872" opcode="PUSHS">
+        <arg1 type="var">LF@rayy%2</arg1>
+    </instruction>
+    <instruction order="873" opcode="PUSHS">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="874" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="875" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="876" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="877" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="878" opcode="PUSHS">
+        <arg1 type="var">GF@posy</arg1>
+    </instruction>
+    <instruction order="879" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="880" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="881" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="882" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="883" opcode="POPS">
+        <arg1 type="var">LF@intersectiony%5</arg1>
+    </instruction>
+    <instruction order="884" opcode="PUSHS">
+        <arg1 type="var">LF@rayz%2</arg1>
+    </instruction>
+    <instruction order="885" opcode="PUSHS">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="886" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="887" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="888" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="889" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="890" opcode="PUSHS">
+        <arg1 type="var">GF@posz</arg1>
+    </instruction>
+    <instruction order="891" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="892" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="893" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="894" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="895" opcode="POPS">
+        <arg1 type="var">LF@intersectionz%5</arg1>
+    </instruction>
+    <instruction order="896" opcode="PUSHS">
+        <arg1 type="var">LF@intersectionx%5</arg1>
+    </instruction>
+    <instruction order="897" opcode="PUSHS">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="898" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="899" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="900" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="901" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="902" opcode="PUSHS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="903" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="904" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="905" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="906" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="907" opcode="POPS">
+        <arg1 type="var">LF@normalx%5</arg1>
+    </instruction>
+    <instruction order="908" opcode="PUSHS">
+        <arg1 type="var">LF@intersectiony%5</arg1>
+    </instruction>
+    <instruction order="909" opcode="PUSHS">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="910" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="911" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="912" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="913" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="914" opcode="PUSHS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="915" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="916" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="917" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="918" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="919" opcode="POPS">
+        <arg1 type="var">LF@normaly%5</arg1>
+    </instruction>
+    <instruction order="920" opcode="PUSHS">
+        <arg1 type="var">LF@intersectionz%5</arg1>
+    </instruction>
+    <instruction order="921" opcode="PUSHS">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="922" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="923" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="924" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="925" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="926" opcode="PUSHS">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="927" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="928" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="929" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="930" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="931" opcode="POPS">
+        <arg1 type="var">LF@normalz%5</arg1>
+    </instruction>
+    <instruction order="932" opcode="PUSHS">
+        <arg1 type="var">GF@lightx</arg1>
+    </instruction>
+    <instruction order="933" opcode="PUSHS">
+        <arg1 type="var">LF@intersectionx%5</arg1>
+    </instruction>
+    <instruction order="934" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="935" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="936" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="937" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="938" opcode="POPS">
+        <arg1 type="var">LF@tolightx%5</arg1>
+    </instruction>
+    <instruction order="939" opcode="PUSHS">
+        <arg1 type="var">GF@lighty</arg1>
+    </instruction>
+    <instruction order="940" opcode="PUSHS">
+        <arg1 type="var">LF@intersectiony%5</arg1>
+    </instruction>
+    <instruction order="941" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="942" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="943" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="944" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="945" opcode="POPS">
+        <arg1 type="var">LF@tolighty%5</arg1>
+    </instruction>
+    <instruction order="946" opcode="PUSHS">
+        <arg1 type="var">GF@lightz</arg1>
+    </instruction>
+    <instruction order="947" opcode="PUSHS">
+        <arg1 type="var">LF@intersectionz%5</arg1>
+    </instruction>
+    <instruction order="948" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="949" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="950" opcode="SUB">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="951" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="952" opcode="POPS">
+        <arg1 type="var">LF@tolightz%5</arg1>
+    </instruction>
+    <instruction order="953" opcode="PUSHS">
+        <arg1 type="var">LF@tolightx%5</arg1>
+    </instruction>
+    <instruction order="954" opcode="PUSHS">
+        <arg1 type="var">LF@tolightx%5</arg1>
+    </instruction>
+    <instruction order="955" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="956" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="957" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="958" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="959" opcode="PUSHS">
+        <arg1 type="var">LF@tolighty%5</arg1>
+    </instruction>
+    <instruction order="960" opcode="PUSHS">
+        <arg1 type="var">LF@tolighty%5</arg1>
+    </instruction>
+    <instruction order="961" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="962" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="963" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="964" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="965" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="966" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="967" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="968" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="969" opcode="PUSHS">
+        <arg1 type="var">LF@tolightz%5</arg1>
+    </instruction>
+    <instruction order="970" opcode="PUSHS">
+        <arg1 type="var">LF@tolightz%5</arg1>
+    </instruction>
+    <instruction order="971" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="972" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="973" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="974" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="975" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="976" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="977" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="978" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="979" opcode="POPS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="980" opcode="PUSHS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="981" opcode="CALL">
+        <arg1 type="label">yiplus1</arg1>
+    </instruction>
+    <instruction order="982" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="983" opcode="POPS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="984" opcode="PUSHS">
+        <arg1 type="var">LF@normalx%5</arg1>
+    </instruction>
+    <instruction order="985" opcode="PUSHS">
+        <arg1 type="var">LF@tolightx%5</arg1>
+    </instruction>
+    <instruction order="986" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="987" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="988" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="989" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="990" opcode="PUSHS">
+        <arg1 type="var">LF@normaly%5</arg1>
+    </instruction>
+    <instruction order="991" opcode="PUSHS">
+        <arg1 type="var">LF@tolighty%5</arg1>
+    </instruction>
+    <instruction order="992" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="993" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="994" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="995" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="996" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="997" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="998" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="999" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1000" opcode="PUSHS">
+        <arg1 type="var">LF@normalz%5</arg1>
+    </instruction>
+    <instruction order="1001" opcode="PUSHS">
+        <arg1 type="var">LF@tolightz%5</arg1>
+    </instruction>
+    <instruction order="1002" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1003" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1004" opcode="MUL">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1005" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1006" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1007" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1008" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1009" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1010" opcode="PUSHS">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="1011" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1012" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1013" opcode="DIV">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1014" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1015" opcode="POPS">
+        <arg1 type="var">LF@lightness%5</arg1>
+    </instruction>
+    <instruction order="1016" opcode="PUSHS">
+        <arg1 type="var">LF@lightness%5</arg1>
+    </instruction>
+    <instruction order="1017" opcode="CALL">
+        <arg1 type="label">pixel_color</arg1>
+    </instruction>
+    <instruction order="1018" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="1019" opcode="POPS">
+        <arg1 type="var">LF@pixel%2</arg1>
+    </instruction>
+    <instruction order="1020" opcode="JUMP">
+        <arg1 type="label">branch_end$31</arg1>
+    </instruction>
+    <instruction order="1021" opcode="LABEL">
+        <arg1 type="label">branch_skip$32</arg1>
+    </instruction>
+    <instruction order="1022" opcode="LABEL">
+        <arg1 type="label">branch_end$31</arg1>
+    </instruction>
+    <instruction order="1023" opcode="JUMP">
+        <arg1 type="label">branch_end$2F</arg1>
+    </instruction>
+    <instruction order="1024" opcode="LABEL">
+        <arg1 type="label">branch_skip$30</arg1>
+    </instruction>
+    <instruction order="1025" opcode="LABEL">
+        <arg1 type="label">branch_end$2F</arg1>
+    </instruction>
+    <instruction order="1026" opcode="PUSHS">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="1027" opcode="PUSHS">
+        <arg1 type="int">1</arg1>
+    </instruction>
+    <instruction order="1028" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1029" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1030" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1031" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1032" opcode="POPS">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="1033" opcode="JUMP">
+        <arg1 type="label">while_start$2A</arg1>
+    </instruction>
+    <instruction order="1034" opcode="LABEL">
+        <arg1 type="label">while_end$2B</arg1>
+    </instruction>
+    <instruction order="1035" opcode="PUSHS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="1036" opcode="PUSHS">
+        <arg1 type="var">LF@pixel%2</arg1>
+    </instruction>
+    <instruction order="1037" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1038" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1039" opcode="CONCAT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1040" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="1041" opcode="POPS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="1042" opcode="PUSHS">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="1043" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="1044" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1045" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1046" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1047" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1048" opcode="POPS">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="1049" opcode="JUMP">
+        <arg1 type="label">while_start$28</arg1>
+    </instruction>
+    <instruction order="1050" opcode="LABEL">
+        <arg1 type="label">while_end$29</arg1>
+    </instruction>
+    <instruction order="1051" opcode="PUSHS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="1052" opcode="PUSHS">
+        <arg1 type="string">|</arg1>
+    </instruction>
+    <instruction order="1053" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1054" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1055" opcode="CONCAT">
+        <arg1 type="var">GF@$RET</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1056" opcode="PUSHS">
+        <arg1 type="var">GF@$RET</arg1>
+    </instruction>
+    <instruction order="1057" opcode="POPS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="1058" opcode="PUSHS">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="1059" opcode="CALL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="1060" opcode="PUSHS">
+        <arg1 type="string">\010</arg1>
+    </instruction>
+    <instruction order="1061" opcode="CALL">
+        <arg1 type="label">write</arg1>
+    </instruction>
+    <instruction order="1062" opcode="PUSHS">
+        <arg1 type="var">GF@y</arg1>
+    </instruction>
+    <instruction order="1063" opcode="PUSHS">
+        <arg1 type="float">1.0000000000</arg1>
+    </instruction>
+    <instruction order="1064" opcode="POPS">
+        <arg1 type="var">GF@$B</arg1>
+    </instruction>
+    <instruction order="1065" opcode="POPS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1066" opcode="ADD">
+        <arg1 type="var">GF@$A</arg1>
+        <arg2 type="var">GF@$A</arg2>
+        <arg3 type="var">GF@$B</arg3>
+    </instruction>
+    <instruction order="1067" opcode="PUSHS">
+        <arg1 type="var">GF@$A</arg1>
+    </instruction>
+    <instruction order="1068" opcode="POPS">
+        <arg1 type="var">GF@y</arg1>
+    </instruction>
+    <instruction order="1069" opcode="JUMP">
+        <arg1 type="label">while_start$26</arg1>
+    </instruction>
+    <instruction order="1070" opcode="LABEL">
+        <arg1 type="label">while_end$27</arg1>
+    </instruction>
+    <instruction order="1071" opcode="PUSHS">
+        <arg1 type="var">GF@resx</arg1>
+    </instruction>
+    <instruction order="1072" opcode="CALL">
+        <arg1 type="label">print_line</arg1>
+    </instruction>
+    <instruction order="1073" opcode="POPFRAME"/>
+    <instruction order="1074" opcode="JUMP">
+        <arg1 type="label">main_def_skip$33</arg1>
+    </instruction>
+    <instruction order="1075" opcode="LABEL">
+        <arg1 type="label">main_defvar$0</arg1>
+    </instruction>
+    <instruction order="1076" opcode="DEFVAR">
+        <arg1 type="var">LF@tarx%2</arg1>
+    </instruction>
+    <instruction order="1077" opcode="DEFVAR">
+        <arg1 type="var">LF@tary%2</arg1>
+    </instruction>
+    <instruction order="1078" opcode="DEFVAR">
+        <arg1 type="var">LF@tarz%2</arg1>
+    </instruction>
+    <instruction order="1079" opcode="DEFVAR">
+        <arg1 type="var">LF@rayx%2</arg1>
+    </instruction>
+    <instruction order="1080" opcode="DEFVAR">
+        <arg1 type="var">LF@rayy%2</arg1>
+    </instruction>
+    <instruction order="1081" opcode="DEFVAR">
+        <arg1 type="var">LF@rayz%2</arg1>
+    </instruction>
+    <instruction order="1082" opcode="DEFVAR">
+        <arg1 type="var">LF@n%2</arg1>
+    </instruction>
+    <instruction order="1083" opcode="DEFVAR">
+        <arg1 type="var">LF@z%2</arg1>
+    </instruction>
+    <instruction order="1084" opcode="DEFVAR">
+        <arg1 type="var">LF@pixel%2</arg1>
+    </instruction>
+    <instruction order="1085" opcode="DEFVAR">
+        <arg1 type="var">LF@spherex%3</arg1>
+    </instruction>
+    <instruction order="1086" opcode="DEFVAR">
+        <arg1 type="var">LF@spherey%3</arg1>
+    </instruction>
+    <instruction order="1087" opcode="DEFVAR">
+        <arg1 type="var">LF@spherez%3</arg1>
+    </instruction>
+    <instruction order="1088" opcode="DEFVAR">
+        <arg1 type="var">LF@sphereradius%3</arg1>
+    </instruction>
+    <instruction order="1089" opcode="DEFVAR">
+        <arg1 type="var">LF@sphereradius2%3</arg1>
+    </instruction>
+    <instruction order="1090" opcode="DEFVAR">
+        <arg1 type="var">LF@ocx%3</arg1>
+    </instruction>
+    <instruction order="1091" opcode="DEFVAR">
+        <arg1 type="var">LF@ocy%3</arg1>
+    </instruction>
+    <instruction order="1092" opcode="DEFVAR">
+        <arg1 type="var">LF@ocz%3</arg1>
+    </instruction>
+    <instruction order="1093" opcode="DEFVAR">
+        <arg1 type="var">LF@a%3</arg1>
+    </instruction>
+    <instruction order="1094" opcode="DEFVAR">
+        <arg1 type="var">LF@b%3</arg1>
+    </instruction>
+    <instruction order="1095" opcode="DEFVAR">
+        <arg1 type="var">LF@c%3</arg1>
+    </instruction>
+    <instruction order="1096" opcode="DEFVAR">
+        <arg1 type="var">LF@d%3</arg1>
+    </instruction>
+    <instruction order="1097" opcode="DEFVAR">
+        <arg1 type="var">LF@t%4</arg1>
+    </instruction>
+    <instruction order="1098" opcode="DEFVAR">
+        <arg1 type="var">LF@in_range%4</arg1>
+    </instruction>
+    <instruction order="1099" opcode="DEFVAR">
+        <arg1 type="var">LF@intersectionx%5</arg1>
+    </instruction>
+    <instruction order="1100" opcode="DEFVAR">
+        <arg1 type="var">LF@intersectiony%5</arg1>
+    </instruction>
+    <instruction order="1101" opcode="DEFVAR">
+        <arg1 type="var">LF@intersectionz%5</arg1>
+    </instruction>
+    <instruction order="1102" opcode="DEFVAR">
+        <arg1 type="var">LF@normalx%5</arg1>
+    </instruction>
+    <instruction order="1103" opcode="DEFVAR">
+        <arg1 type="var">LF@normaly%5</arg1>
+    </instruction>
+    <instruction order="1104" opcode="DEFVAR">
+        <arg1 type="var">LF@normalz%5</arg1>
+    </instruction>
+    <instruction order="1105" opcode="DEFVAR">
+        <arg1 type="var">LF@tolightx%5</arg1>
+    </instruction>
+    <instruction order="1106" opcode="DEFVAR">
+        <arg1 type="var">LF@tolighty%5</arg1>
+    </instruction>
+    <instruction order="1107" opcode="DEFVAR">
+        <arg1 type="var">LF@tolightz%5</arg1>
+    </instruction>
+    <instruction order="1108" opcode="DEFVAR">
+        <arg1 type="var">LF@lightness%5</arg1>
+    </instruction>
+    <instruction order="1109" opcode="DEFVAR">
+        <arg1 type="var">GF@resx</arg1>
+    </instruction>
+    <instruction order="1110" opcode="DEFVAR">
+        <arg1 type="var">GF@resy</arg1>
+    </instruction>
+    <instruction order="1111" opcode="DEFVAR">
+        <arg1 type="var">GF@posx</arg1>
+    </instruction>
+    <instruction order="1112" opcode="DEFVAR">
+        <arg1 type="var">GF@posy</arg1>
+    </instruction>
+    <instruction order="1113" opcode="DEFVAR">
+        <arg1 type="var">GF@posz</arg1>
+    </instruction>
+    <instruction order="1114" opcode="DEFVAR">
+        <arg1 type="var">GF@spherex</arg1>
+    </instruction>
+    <instruction order="1115" opcode="DEFVAR">
+        <arg1 type="var">GF@spherey</arg1>
+    </instruction>
+    <instruction order="1116" opcode="DEFVAR">
+        <arg1 type="var">GF@spherez</arg1>
+    </instruction>
+    <instruction order="1117" opcode="DEFVAR">
+        <arg1 type="var">GF@sphereradius</arg1>
+    </instruction>
+    <instruction order="1118" opcode="DEFVAR">
+        <arg1 type="var">GF@lightx</arg1>
+    </instruction>
+    <instruction order="1119" opcode="DEFVAR">
+        <arg1 type="var">GF@lighty</arg1>
+    </instruction>
+    <instruction order="1120" opcode="DEFVAR">
+        <arg1 type="var">GF@lightz</arg1>
+    </instruction>
+    <instruction order="1121" opcode="DEFVAR">
+        <arg1 type="var">GF@line</arg1>
+    </instruction>
+    <instruction order="1122" opcode="DEFVAR">
+        <arg1 type="var">GF@x</arg1>
+    </instruction>
+    <instruction order="1123" opcode="DEFVAR">
+        <arg1 type="var">GF@y</arg1>
+    </instruction>
+    <instruction order="1124" opcode="JUMP">
+        <arg1 type="label">main_defvar_back$1</arg1>
+    </instruction>
+    <instruction order="1125" opcode="LABEL">
+        <arg1 type="label">main_def_skip$33</arg1>
+    </instruction>
+</program>
