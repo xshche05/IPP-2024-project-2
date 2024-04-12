@@ -1,6 +1,6 @@
 <?php
 
-namespace IPP\Student;
+namespace IPP\Student\Stat;
 
 use InvalidArgumentException;
 

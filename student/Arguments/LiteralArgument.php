@@ -44,10 +44,21 @@ class LiteralArgument extends AbstractArgument
         }
     }
 
+    /**
+     * @throws InvalidSourceStructure
+     */
     private function float(): float
     {
-        // todo: implement float parsing
-        throw new InternalErrorException("Not implemented");
+        $value = $this->value;
+        $float = filter_var(
+            $value,
+            FILTER_VALIDATE_FLOAT,
+            FILTER_NULL_ON_FAILURE
+        );
+        if ($float === null) {
+            throw new InvalidSourceStructure("Invalid float number");
+        }
+        return $float;
     }
 
     /**
@@ -61,7 +72,7 @@ class LiteralArgument extends AbstractArgument
         if (!preg_match("/$int_regex/", $this->value)) {
             throw new InvalidSourceStructure("Invalid integer number");
         }
-        $value = ltrim($this->value, "-");
+        $value = ltrim($this->value, "-+");
         if (str_starts_with($value, "0x") || str_starts_with($this->value, "0X")) {
             return intval(base_convert($value, 16, 10))* $sign;
         }

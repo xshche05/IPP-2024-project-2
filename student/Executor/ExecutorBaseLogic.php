@@ -150,7 +150,7 @@ trait ExecutorBaseLogic
 
     /**
      * Function to execute the program
-     * @throws InvalidSourceStructure|ReflectionException - if there is no temporary frame to push on frame stack
+     * @throws InvalidSourceStructure - if there is no temporary frame to push on frame stack
      */
     public function run(): int
     {

@@ -32,7 +32,7 @@
     <xs:element name="program">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="instruction">
+                <xs:element maxOccurs="unbounded" name="instruction" minOccurs="0">
                     <xs:complexType>
                         <xs:choice minOccurs="0" maxOccurs="3">
                             <xs:element ref="arg1" minOccurs="0"/>
@@ -44,7 +44,7 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="language" type="xs:string" use="required"/>
+            <xs:attribute name="language" type="xs:string" use="required" fixed="IPPcode24"/>
             <xs:attribute name="name" type="xs:string"/>
             <xs:attribute name="description" type="xs:string"/>
         </xs:complexType>

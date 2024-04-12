@@ -77,8 +77,15 @@ class Program
     public function initOrders(): void
     {
         $array_keys = array_keys($this->instruction_flow);
-        $this->start_order = min($array_keys);
-        $this->last_order = max($array_keys);
+        if (count($array_keys) == 0)
+        {
+            $this->start_order = 0;
+            $this->last_order = -1;
+        }
+        else {
+            $this->start_order = min($array_keys);
+            $this->last_order = max($array_keys);
+        }
     }
 
     public function getStartOrder(): int

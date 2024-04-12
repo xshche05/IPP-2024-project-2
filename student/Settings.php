@@ -2,10 +2,17 @@
 
 namespace IPP\Student;
 
+use IPP\Core\Exception\InputFileException;
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Core\Exception\ParameterException;
+use IPP\Core\Interface\InputReader;
+use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
+use IPP\Student\CustomIo\CustomInputReader;
+use IPP\Student\CustomIo\CustomWriter;
 use IPP\Student\Executor\Executor;
+use IPP\Student\Stat\StatOption;
+use IPP\Student\Stat\StatOptionType;
 
 class Settings extends \IPP\Core\Settings
 {
@@ -139,5 +146,20 @@ class Settings extends \IPP\Core\Settings
             throw new InternalErrorException("Cannot read schema file");
         }
         return $file_data;
+    }
+
+    public function getStdOutWriter(): OutputWriter
+    {
+        static $writer = new CustomWriter(STDOUT);
+        return $writer;
+    }
+
+    /**
+     * @throws InputFileException
+     */
+    public function getInputReader(): InputReader
+    {
+        static $reader = new CustomInputReader($this->input);
+        return $reader;
     }
 }

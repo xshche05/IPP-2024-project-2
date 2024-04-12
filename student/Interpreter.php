@@ -4,14 +4,18 @@ namespace IPP\Student;
 
 use IPP\Core\AbstractInterpreter;
 use IPP\Core\Exception\InternalErrorException;
+use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 use IPP\Student\Program\ProgramBuilder;
+use IPP\Student\Stat\StatOption;
 
 class Interpreter extends AbstractInterpreter
 {
     /**
-     * @throws InvalidSourceStructure
+     * @return int
+     * @throws InterpretSemanticException
      * @throws InternalErrorException
+     * @throws InvalidSourceStructure
      */
     public function execute(): int
     {

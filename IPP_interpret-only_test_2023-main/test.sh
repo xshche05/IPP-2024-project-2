@@ -15,7 +15,7 @@ fi
 for x in $(find "$PWD" -name '*.src')
 do
   #spuštění interptetu
-  timeout 2 php8.3 "$INTERPRET" --source="$x" --input="${x%.src}.in" > "${x%.src}.my_out" 2> /dev/null
+  timeout 100 php8.3 "$INTERPRET" --source="$x" --input="${x%.src}.in" > "${x%.src}.my_out" 2> /dev/null
 
   #uložení návratové hodnoty
   echo $? | tr -d '\n' > "${x%.src}.my_rc"

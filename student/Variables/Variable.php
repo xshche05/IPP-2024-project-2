@@ -3,6 +3,7 @@
 namespace IPP\Student\Variables;
 
 use IPP\Student\Exceptions\RuntimeNoValueException;
+use Override;
 
 class Variable extends MemoryValue
 {
@@ -28,7 +29,7 @@ class Variable extends MemoryValue
      * @return int|string|float|bool|null - value of the variable
      * @throws RuntimeNoValueException - if the variable is not initialized and $soft is false
      */
-    public function getValue(bool $soft = false): int|string|float|bool|null
+    #[Override] public function getValue(bool $soft = false): int|string|float|bool|null
     {
         if ($this->type === MemoryDataType::NONE_TYPE && !$soft) {
             throw new RuntimeNoValueException("Variable $this->name is not initialized.");
