@@ -150,7 +150,13 @@ class Settings extends \IPP\Core\Settings
 
     public function getStdOutWriter(): OutputWriter
     {
-        static $writer = new CustomWriter(STDOUT);
+        static $writer = new CustomWriter(STDOUT, $this->getFloatWriteFormat());
+        return $writer;
+    }
+
+    public function getStdErrWriter() : OutputWriter
+    {
+        static $writer = new CustomWriter(STDERR, $this->getFloatWriteFormat());
         return $writer;
     }
 
