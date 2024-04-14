@@ -49,4 +49,14 @@ class MemoryFrame
     {
         return count($this->var_map);
     }
+
+    public function toString(): string
+    {
+        $str = "{\n";
+        foreach ($this->var_map as $var) {
+            $str .= "  " . $var->getName() . " = " . $var->toString() . "\n";
+        }
+        $str .= "}\n";
+        return $str;
+    }
 }

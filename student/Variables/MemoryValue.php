@@ -35,6 +35,16 @@ class MemoryValue
         return $this->type;
     }
 
+    public function toString(): string
+    {
+        return match ($this->type) {
+            MemoryDataType::INT, MemoryDataType::FLOAT, MemoryDataType::STRING => (string)$this->value,
+            MemoryDataType::BOOL => $this->value ? "true" : "false",
+            MemoryDataType::NIL => "nil",
+            MemoryDataType::NONE_TYPE => "none",
+        };
+    }
+
     /**
      * @throws RuntimeTypeException
      * @throws RuntimeNoValueException
