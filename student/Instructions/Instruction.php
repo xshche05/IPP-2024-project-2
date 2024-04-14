@@ -71,10 +71,10 @@ class Instruction
         return $ret;
     }
 
-    public function setExecutor(Executor $executor, string $method): void
+    public function setExecutor(Executor $executor): void
     {
         $this->executor_instance = $executor;
-        $this->executor_method = $method;
+        $this->executor_method = strtoupper($this->opcode);
     }
 
     public function getExecutionCount(): int
