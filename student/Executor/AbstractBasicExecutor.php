@@ -733,9 +733,37 @@ trait AbstractBasicExecutor
      */
     public function BREAK(): void
     {
-        $this->stderr->writeString("Current state of the executor:\n");
+        $this->stderr->writeString("\n\nCurrent state of the executor:\n\n");
         $this->stderr->writeString("Instruction pointer: $this->instruction_pointer\n");
         $this->stderr->writeString("Executed instructions: $this->executed_instruction_count\n");
+        $this->stderr->writeString("Global frame:\n");
+        $this->stderr->writeString($this->globalFrame->toString());
+        if (count($this->frameStack) > 0) {
+            $this->stderr->writeString("Local frame:\n");
+            $this->stderr->writeString($this->getLocalFrame()->toString());
+        } else {
+            $this->stderr->writeString("No local frame\n");
+        }
+        if ($this->tempFrame !== null) {
+            $this->stderr->writeString("Temporary frame:\n");
+            $this->stderr->writeString($this->tempFrame->toString());
+        } else {
+            $this->stderr->writeString("No temporary frame\n");
+        }
+        $this->stderr->writeString("Data stack:\n");
+        $data_stack = "{\n";
+        foreach ($this->dataStack as $data) {
+            $data_stack .= "  " . $data->toString() . "\n";
+        }
+        $data_stack .= "}\n";
+        $this->stderr->writeString($data_stack);
+        $this->stderr->writeString("Call stack:\n");
+        $call_stack = "{\n";
+        foreach ($this->callStack as $call) {
+            $call_stack .= "Return order:  $call\n";
+        }
+        $call_stack .= "}\n";
+        $this->stderr->writeString($call_stack);
         $this->executed_instruction_count--;
     }
 }
