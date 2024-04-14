@@ -29,7 +29,7 @@ class InstructionBuilder
                 $instruction->addArgument($arg, $order);
             }
         }
-        $instruction->setExecutor(Settings::getExecutor(), $instruction->getOpcode());
+        $instruction->setExecutor(Settings::getExecutor());
         return $instruction;
     }
 }
