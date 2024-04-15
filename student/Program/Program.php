@@ -16,7 +16,6 @@ class Program
     private array $label_map;
     private int $last_order;
     private int $start_order;
-//    private int $most_executed_count;
     public function __construct()
     {
         $this->instruction_flow = array();
@@ -74,6 +73,9 @@ class Program
         return $this->label_map[$label];
     }
 
+    /**
+     * Initialize the orders of the program before executing
+     */
     public function initOrders(): void
     {
         $array_keys = array_keys($this->instruction_flow);
@@ -98,6 +100,9 @@ class Program
         return $this->last_order;
     }
 
+    /**
+     * Function to get the statistics of the program, get the most executed instruction with the least order
+     */
     public function getHotStat(): int
     {
         $most_executed = -1;
@@ -111,20 +116,29 @@ class Program
                 $least_order = min($least_order, $order);
             }
         }
-//        $this->most_executed_count = $most_executed;
         return $least_order;
     }
 
+    /**
+     * Function to get the statistics of the program, get number of instructions executed
+     */
     public function getInstStat(): int
     {
         return Settings::getExecutor()->getExecutedInstructionCount();
     }
 
+
+    /**
+     * Function to get the statistics of the program, get max number of variables initialized in the same time
+     */
     public function getVarsStat(): int
     {
         return Settings::getExecutor()->getMaxVarCount();
     }
 
+    /**
+     * Function to get the statistics of the program, get max number of values on in the same time
+     */
     public function getStackStat(): int
     {
         return Settings::getExecutor()->getMaxDataStackSize();
