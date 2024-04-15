@@ -1,6 +1,6 @@
 <?php
 
-namespace IPP\Student\Executor;
+namespace IPP\Student\Executor\Traits;
 
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\Arguments\LabelArgument;
@@ -19,9 +19,9 @@ use IPP\Student\Variables\MemoryFrame;
 use IPP\Student\Variables\MemoryValue;
 use IPP\Student\Variables\Variable;
 
-trait AbstractBasicExecutor
+trait BasicExecutorT
 {
-    use ExecutorBaseLogic;
+    use ExecutorBaseLogicT;
     /** MEMORY FRAME, FUNC CALL INSTRUCTIONS */
 
     /**

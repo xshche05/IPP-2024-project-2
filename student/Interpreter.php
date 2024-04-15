@@ -8,6 +8,7 @@ use IPP\Student\Exceptions\InterpretSemanticException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 use IPP\Student\Program\ProgramBuilder;
 use IPP\Student\Stat\StatOption;
+use IPP\Student\Stat\StatOptionType;
 
 class Interpreter extends AbstractInterpreter
 {
@@ -39,13 +40,15 @@ class Interpreter extends AbstractInterpreter
             }
             $statToOut = Settings::getStatsConf();
             foreach ($statToOut as $stat) {
-                fwrite($file, $stat->out());
+                if ($stat->getType() === StatOptionType::EOL) {
+                    fwrite($file, "\n");
+                } else {
+                    fwrite($file, $stat->out() . "\n");
+                }
+
             }
             fclose($file);
         }
         return $ret_code;
     }
 }
-
-
-// todo: float read, print, debug instruction

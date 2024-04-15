@@ -1,6 +1,6 @@
 <?php
 
-namespace IPP\Student\Executor;
+namespace IPP\Student\Executor\Traits;
 
 use IPP\Student\Arguments\LabelArgument;
 use IPP\Student\Exceptions\InterpretSemanticException;
@@ -11,9 +11,9 @@ use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
 
-trait AbstractStackExecutor
+trait StackExecutorT
 {
-    use ExecutorBaseLogic;
+    use ExecutorBaseLogicT;
     /** STACK */
 
     public function CLEARS(): void
@@ -64,18 +64,6 @@ trait AbstractStackExecutor
         $src2_data = $this->dataPop();
         $src1_data = $this->dataPop();
         $this->dataPush($src1_data->idiv($src2_data));
-    }
-
-    /**
-     * @throws RuntimeNoValueException
-     * @throws RuntimeWrongValueException
-     * @throws RuntimeTypeException
-     */
-    public function DIVS(): void
-    {
-        $src2_data = $this->dataPop();
-        $src1_data = $this->dataPop();
-        $this->dataPush($src1_data->div($src2_data));
     }
 
     /**

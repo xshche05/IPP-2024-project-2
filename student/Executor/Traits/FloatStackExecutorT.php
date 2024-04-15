@@ -1,15 +1,16 @@
 <?php
 
-namespace IPP\Student\Executor;
+namespace IPP\Student\Executor\Traits;
 
 use IPP\Student\Exceptions\RuntimeNoValueException;
 use IPP\Student\Exceptions\RuntimeTypeException;
+use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
 
-trait AbstractFloatStackExecutor
+trait FloatStackExecutorT
 {
-    use ExecutorBaseLogic;
+    use ExecutorBaseLogicT;
     /** FLOAT STACK CONV */
 
     /**
@@ -39,5 +40,18 @@ trait AbstractFloatStackExecutor
         }
         $result = new MemoryValue(intval($src_data->getValue()), MemoryDataType::INT);
         $this->dataPush($result);
+    }
+
+
+    /**
+     * @throws RuntimeNoValueException
+     * @throws RuntimeWrongValueException
+     * @throws RuntimeTypeException
+     */
+    public function DIVS(): void
+    {
+        $src2_data = $this->dataPop();
+        $src1_data = $this->dataPop();
+        $this->dataPush($src1_data->div($src2_data));
     }
 }

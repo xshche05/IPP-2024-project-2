@@ -1,6 +1,6 @@
 <?php
 
-namespace IPP\Student\Executor;
+namespace IPP\Student\Executor\Traits;
 
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\Arguments\LiteralArgument;
@@ -13,9 +13,9 @@ use IPP\Student\Exceptions\RuntimeWrongValueException;
 use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryValue;
 
-trait AbstractFloatExecutor
+trait FloatExecutorT
 {
-    use ExecutorBaseLogic;
+    use ExecutorBaseLogicT;
 
     /** FLOAT */
 

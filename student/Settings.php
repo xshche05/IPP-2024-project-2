@@ -30,6 +30,8 @@ class Settings extends \IPP\Core\Settings
 
     private static string $executor = Executor::class;
 
+    private static string $float_format = "%.10e";
+
     /**
      * @throws ParameterException
      */
@@ -150,13 +152,13 @@ class Settings extends \IPP\Core\Settings
 
     public function getStdOutWriter(): OutputWriter
     {
-        static $writer = new CustomWriter(STDOUT, $this->getFloatWriteFormat());
+        static $writer = new CustomWriter(STDOUT, self::$float_format);
         return $writer;
     }
 
     public function getStdErrWriter() : OutputWriter
     {
-        static $writer = new CustomWriter(STDERR, $this->getFloatWriteFormat());
+        static $writer = new CustomWriter(STDERR, self::$float_format);
         return $writer;
     }
 
@@ -167,5 +169,10 @@ class Settings extends \IPP\Core\Settings
     {
         static $reader = new CustomInputReader($this->input);
         return $reader;
+    }
+
+    public function setFloatFormat(string $format): void
+    {
+        self::$float_format = $format;
     }
 }

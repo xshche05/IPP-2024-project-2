@@ -1,6 +1,6 @@
 <?php
 
-namespace IPP\Student\Executor;
+namespace IPP\Student\Executor\Traits;
 
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Core\Interface\InputReader;
@@ -16,9 +16,8 @@ use IPP\Student\Variables\MemoryDataType;
 use IPP\Student\Variables\MemoryFrame;
 use IPP\Student\Variables\MemoryValue;
 use IPP\Student\Variables\Variable;
-use ReflectionException;
 
-trait ExecutorBaseLogic
+trait ExecutorBaseLogicT
 {
     /** @var int $instruction_pointer current execution instruction order */
     protected int $instruction_pointer;

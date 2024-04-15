@@ -83,9 +83,10 @@ class Engine
             $interpreter = new $class($settings);
         } catch (IPPException $e) {
             throw $e;
-        } catch (Throwable $e) {
-            throw new IntegrationException("Invalid class constructor in $class", $e);
         }
+//        } catch (Throwable $e) {
+//            throw new IntegrationException("Invalid class constructor in $class", $e);
+//        }
         return $interpreter;
     }
 }
