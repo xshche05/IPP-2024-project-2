@@ -37,6 +37,7 @@ trait BasicExecutorT
         $dest_var = $this->getFramedVariable($var);
         $src_symb = $this->getSymbMemoryValue($symb);
         $dest_var->assign($src_symb);
+        $this->maxVars = max($this->maxVars, $this->countInitVars());
     }
 
     /**
@@ -44,9 +45,6 @@ trait BasicExecutorT
      */
     public function CREATEFRAME(): void
     {
-        if ($this->tempFrame !== null) {
-            $this->currentVarCount -= $this->tempFrame->getVarCount();
-        }
         $this->tempFrame = new MemoryFrame();
     }
 
@@ -69,8 +67,6 @@ trait BasicExecutorT
      */
     public function POPFRAME(): void
     {
-        $lost_var_count = $this->getLocalFrame()->getVarCount();
-        $this->currentVarCount -= $lost_var_count;
         $this->tempFrame = $this->getLocalFrame();
         array_pop($this->frameStack);
     }
@@ -98,8 +94,7 @@ trait BasicExecutorT
         } else {
             throw new InternalErrorException("Unknown frame");
         }
-        $this->currentVarCount++;
-        $this->maxVars = max($this->maxVars, $this->currentVarCount);
+        $this->maxVars = max($this->maxVars, $this->countInitVars());
     }
 
     /**
@@ -155,6 +150,7 @@ trait BasicExecutorT
         $dest_var = $this->getFramedVariable($var);
         $src_data = $this->dataPop();
         $dest_var->assign($src_data);
+        $this->maxVars = max($this->maxVars, $this->countInitVars());
     }
 
     /** ALU INSTRUCTIONS */
@@ -730,6 +726,7 @@ trait BasicExecutorT
 
     /**
      * Function to execute the instruction BREAK
+     * @throws RuntimeMemoryFrameException
      */
     public function BREAK(): void
     {

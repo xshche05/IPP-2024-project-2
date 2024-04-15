@@ -45,9 +45,15 @@ class MemoryFrame
     /**
      * Function to get number of variables in the frame
      */
-    public function getVarCount(): int
+    public function countInitVars(): int
     {
-        return count($this->var_map);
+        $init = 0;
+        foreach ($this->var_map as $var) {
+            if ($var->getType() !== MemoryDataType::NONE_TYPE) {
+                $init++;
+            }
+        }
+        return $init;
     }
 
     public function toString(): string

@@ -29,7 +29,6 @@ trait ExecutorBaseLogicT
     protected array $frameStack;
     /** @var int $maxVars maximum count of variables in the program in single moment */
     protected int $maxVars;
-    protected int $currentVarCount;
     /** @var MemoryValue[] data stack */
     protected array $dataStack;
     /** @var int $maxDataStackSize maximum size of data stack in the program in single moment */
@@ -118,7 +117,6 @@ trait ExecutorBaseLogicT
         $this->maxVars = 0;
         $this->maxDataStackSize = 0;
         $this->executed_instruction_count = 0;
-        $this->currentVarCount = 0;
     }
 
     /**
@@ -237,5 +235,23 @@ trait ExecutorBaseLogicT
             throw new RuntimeMemoryFrameException("No local frame");
         }
         return $this->frameStack[count($this->frameStack) - 1];
+    }
+
+    protected function countInitVars() : int
+    {
+        $count = 0;
+        $GF = $this->globalFrame;
+        $count += $GF->countInitVars();
+        try {
+            $LF = $this->getLocalFrame();
+            $count += $LF->countInitVars();
+        } catch (RuntimeMemoryFrameException) {
+            $LF = null;
+        }
+        $TF = $this->tempFrame;
+        if ($TF instanceof MemoryFrame) {
+            $count += $TF->countInitVars();
+        }
+        return $count;
     }
 }
