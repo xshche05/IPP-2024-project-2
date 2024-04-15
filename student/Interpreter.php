@@ -21,18 +21,18 @@ class Interpreter extends AbstractInterpreter
     public function execute(): int
     {
         mb_internal_encoding("UTF-8");
-        $dom = $this->source->getDOMDocument();
+        $dom = $this->source->getDOMDocument(); // Get source code
         $scheme = Settings::getSchema();
-        if (!$dom->schemaValidateSource($scheme)) {
+        if (!$dom->schemaValidateSource($scheme)) { // Ippcode sml validation
             throw new InvalidSourceStructure("Invalid XML structure");
         }
         $programBuilder = new ProgramBuilder($dom);
         $program = $programBuilder->build();
-        StatOption::setProgram($program);
+        StatOption::setProgram($program); // Set program for stats getting
         $executor = Settings::getExecutor();
         $executor->init($program, $this->input, $this->stdout, $this->stderr);
-        $ret_code = $executor->run();
-        $stats_file = Settings::getStatsFile();
+        $ret_code = $executor->run(); // Run program
+        $stats_file = Settings::getStatsFile(); // Fill stats file
         if ($stats_file !== "") {
             $file = fopen($stats_file, "w");
             if ($file === false) {

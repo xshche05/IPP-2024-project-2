@@ -94,7 +94,7 @@ trait BasicExecutorT
         } else {
             throw new InternalErrorException("Unknown frame");
         }
-        $this->maxVars = max($this->maxVars, $this->countInitVars());
+        $this->maxVars = max($this->maxVars, $this->countInitVars()); // update max vars
     }
 
     /**
@@ -104,8 +104,8 @@ trait BasicExecutorT
      */
     public function CALL(LabelArgument $label): void
     {
-        $this->callStack[] = $this->instruction_pointer;
-        $this->instruction_pointer = $this->program->getLabelOrder($label->getValue());
+        $this->callStack[] = $this->instruction_pointer; // push return address
+        $this->instruction_pointer = $this->program->getLabelOrder($label->getValue()); // jump to label
     }
 
     /**
@@ -114,11 +114,11 @@ trait BasicExecutorT
      */
     public function RETURN(): void
     {
-        $return_order = array_pop($this->callStack);
+        $return_order = array_pop($this->callStack); // pop return address
         if ($return_order === null) {
             throw new RuntimeNoValueException("No return address on call stack");
         }
-        $this->instruction_pointer = $return_order;
+        $this->instruction_pointer = $return_order; // jump to return address
     }
 
     /** DATA STACK INSTRUCTIONS */
@@ -133,7 +133,7 @@ trait BasicExecutorT
      */
     public function PUSHS(VarArgument|LiteralArgument $symb): void
     {
-        $data = $this->getSymbMemoryValue($symb);
+        $data = $this->getSymbMemoryValue($symb); // convert to internal memory value and push
         $this->dataPush($data);
     }
 
@@ -147,9 +147,9 @@ trait BasicExecutorT
      */
     public function POPS(VarArgument $var): void
     {
-        $dest_var = $this->getFramedVariable($var);
+        $dest_var = $this->getFramedVariable($var); // get variable instance
         $src_data = $this->dataPop();
-        $dest_var->assign($src_data);
+        $dest_var->assign($src_data); // assign value to variable
         $this->maxVars = max($this->maxVars, $this->countInitVars());
     }
 
@@ -168,10 +168,10 @@ trait BasicExecutorT
      */
     public function ADD(VarArgument $var, VarArgument|LiteralArgument $symb1, VarArgument|LiteralArgument $symb2): void
     {
-        $dest_var = $this->getFramedVariable($var);
-        $src1_data = $this->getSymbMemoryValue($symb1);
-        $src2_data = $this->getSymbMemoryValue($symb2);
-        $dest_var->assign($src1_data->add($src2_data));
+        $dest_var = $this->getFramedVariable($var); // get internal variable instance
+        $src1_data = $this->getSymbMemoryValue($symb1); // get first operand as internal memory value
+        $src2_data = $this->getSymbMemoryValue($symb2); // get second operand as internal memory value
+        $dest_var->assign($src1_data->add($src2_data)); // assign result to variable
     }
 
     /**
@@ -362,11 +362,11 @@ trait BasicExecutorT
         if ($src_data->getType() != MemoryDataType::INT) {
             throw new RuntimeTypeException("Invalid type of INT2CHAR operand, expected INT as second operand");
         }
-        $data = mb_chr((int)$src_data->getValue(), "UTF-8");
+        $data = mb_chr((int)$src_data->getValue(), "UTF-8"); // convert to unicode character
         if (!$data) {
             throw new RuntimeStringException("INT2CHAR - Invalid character");
         }
-        $result = new MemoryValue($data, MemoryDataType::STRING);
+        $result = new MemoryValue($data, MemoryDataType::STRING); // create new val and assign to variable
         $dest_var->assign($result);
     }
 
@@ -394,8 +394,8 @@ trait BasicExecutorT
             throw new RuntimeStringException("STRI2INT - Index out of range");
         }
         $string = (string)$src1_data->getValue();
-        $char = mb_substr($string, (int)$src2_data->getValue(), 1, "UTF-8");
-        $data = mb_ord($char, "UTF-8");
+        $char = mb_substr($string, (int)$src2_data->getValue(), 1, "UTF-8"); // get character at index
+        $data = mb_ord($char, "UTF-8"); // convert to unicode to int
         if (!$data) {
             throw new RuntimeStringException("STRI2INT - Invalid character");
         }
@@ -420,8 +420,9 @@ trait BasicExecutorT
         $type_str = $type->getValue();
         switch ($type_str) {
             case "int":
-                $input = $this->stdin->readInt();
+                $input = $this->stdin->readInt(); // read data from stdin
                 $result = new MemoryValue($input, $input === null ? MemoryDataType::NIL : MemoryDataType::INT);
+                // save nil in case of invalid input
                 break;
             case "string":
                 $input = $this->stdin->readString();
@@ -438,7 +439,7 @@ trait BasicExecutorT
             default:
                 throw new InterpretSemanticException("Invalid type of READ operand");
         }
-        $dest_var->assign($result);
+        $dest_var->assign($result); // assign value to variable
     }
 
     /**
@@ -451,19 +452,25 @@ trait BasicExecutorT
      */
     public function WRITE(VarArgument|LiteralArgument $symb): void
     {
-        $src_data = $this->getSymbMemoryValue($symb);
-        if ($src_data->getType() === MemoryDataType::INT) {
-            $this->stdout->writeInt((int)$src_data->getValue());
-        } elseif ($src_data->getType() === MemoryDataType::STRING) {
-            $this->stdout->writeString((string)$src_data->getValue());
-        } elseif ($src_data->getType() === MemoryDataType::BOOL) {
-            $this->stdout->writeBool((bool)$src_data->getValue());
-        } elseif ($src_data->getType() === MemoryDataType::FLOAT) {
-            $this->stdout->writeFloat((float)$src_data->getValue());
-        } elseif ($src_data->getType() === MemoryDataType::NIL) {
-            $this->stdout->writeString("");
-        } else {
-            throw new InternalErrorException("Invalid type of WRITE operand");
+        $src_data = $this->getSymbMemoryValue($symb); // get internal memory value
+        switch ($src_data->getType()) { // write data to stdout based on type
+            case MemoryDataType::INT:
+                $this->stdout->writeInt((int)$src_data->getValue());
+                break;
+            case MemoryDataType::STRING:
+                $this->stdout->writeString((string)$src_data->getValue());
+                break;
+            case MemoryDataType::BOOL:
+                $this->stdout->writeBool((bool)$src_data->getValue());
+                break;
+            case MemoryDataType::FLOAT:
+                $this->stdout->writeFloat((float)$src_data->getValue());
+                break;
+            case MemoryDataType::NIL:
+                $this->stdout->writeString(""); // write empty string for nil
+                break;
+            default:
+                throw new InternalErrorException("Invalid type of WRITE operand");
         }
     }
 

@@ -6,7 +6,7 @@ use DOMElement;
 use IPP\Core\Exception\InternalErrorException;
 use IPP\Student\Exceptions\InvalidSourceStructure;
 
-class ArgumentBuilder
+class ArgumentFactory
 {
     /**
      * @param DOMElement $node XML node representing an argument
@@ -22,7 +22,7 @@ class ArgumentBuilder
         if ($type === '') {
             throw new InvalidSourceStructure("No argument type provided");
         }
-        return match ($type) {
+        return match ($type) { // Return the correct argument object based on the type
             'var' => new VarArgument($value),
             'int' => new LiteralArgument(ArgumentType::INT_LITERAL, $value),
             'bool' => new LiteralArgument(ArgumentType::BOOL_LITERAL, $value),
@@ -37,7 +37,7 @@ class ArgumentBuilder
 
     public static function getArgOrder(string $arg_tag) : int | null
     {
-        preg_match('/(\d+)$/', $arg_tag, $matches);
+        preg_match('/(\d+)$/', $arg_tag, $matches); // parse the number from the tag
         return isset($matches[1]) ? (int)$matches[1] : null;
     }
 }

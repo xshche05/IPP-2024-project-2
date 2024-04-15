@@ -19,7 +19,7 @@ class VarArgument extends AbstractArgument
         parent::__construct(ArgumentType::VARIABLE ,$value);
         if (!preg_match(self::$var_regex, $this->value))
             throw new InvalidSourceStructure("Invalid variable format");
-        $parts = explode('@', $this->value);
+        $parts = explode('@', $this->value); // split the frame and name
         $this->frame = $parts[0];
         $this->name = $parts[1];
     }

@@ -27,9 +27,9 @@ trait StackExecutorT
      */
     public function ADDS(): void
     {
-        $src2_data = $this->dataPop();
-        $src1_data = $this->dataPop();
-        $this->dataPush($src1_data->add($src2_data));
+        $src2_data = $this->dataPop(); // get second operand
+        $src1_data = $this->dataPop(); // get first operand
+        $this->dataPush($src1_data->add($src2_data)); // push result
     }
 
     /**
