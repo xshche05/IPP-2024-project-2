@@ -56,4 +56,5 @@ Execution is performed by simply using cycle which increments instruction pointe
 ### STATI
 `STATI` extension provide instruments to collect execution statistics and write required statistics to output file. Default `Settings` class was extended to perform `STATI` extension's command line arguments parsing and some additional methods were implemented to collect all specified statistics.
 ## UML class diagram
+
 ![UML class diagram](./UML.svg)
