@@ -1,101 +1,60 @@
-# IPP - PHP Project Core
+Documentation of 2. Project Implementation for IPP 2023/2024 \
+Name and surname: Kirill Shchetiniuk \
+Login: xshche05
+# IPPcode24 interpreter documentation (interpret.php)
+## Table of Contents
+- [IPPcode24 interpreter documentation](#IPPcode24-interpreter-documentation)
+    - [Introducing](#introducing)
+    - [Architecture Overview](#architecture-overview)
+        - [Used design patterns](#used-design-patterns)
+        - [Internal memory and variables representation](#internal-memory-and-variables-representation)
+            - [Memory value](#memory-value)
+            - [Variable](#variable)
+            - [Memory frame](#memory-frame)
+    - [Steps of interpretation](#steps-of-interpretation)
+        - [Input code validation](#input-code-validation)
+        - [Program construction](#program-construction)
+        - [Execution](#execution)
+    - [Extensions](#extensions)
+        - [FLOAT](#float)
+        - [STACK](#stack)
+        - [STATI](#stati)
+    - [UML class diagram](#uml-class-diagram)
 
-**Authors:** 
-Radim Kocman, 
-Zbyněk Křivka
+## Introducing
+As an assignment we have to implement simple **IPPcode24** interpreter. Interpreter gets as input already parsed **IPPcod24** in XML format a input data for interpreted program. Interpreter executes instructions one by one in specified order given by instruction tag `order` attribute in input XML. In case of any runtime errors interpreter exits with specified exit code, otherwise finishes program's execution and exits with code `0`. In case of executing `EXIT` instruction, interpreter finishes program's execution and exits with code (`0-9`) specified as instruction argument.
+## Architecture Overview
+The whole project is implemented using `PHP 8.3`. As a project base is used provided `ipp-core`, which gives us several predefined instruments, such as streams' communication interfaces and classes, abstract class `IPPException` for implementing custom exceptions and others. For implementing more complex things specified in the assignment standard `Settings` class was extended by `\IPP\Student\Settings` and stream readers/writes were extended by using custom ones. For easy code management were also used some different traits.
+### Used design patterns
+Interpreter implementation use following design pattern such as builder, singleton, abstract factory and delegation structural pattern. Builder design pattern is used to perform `Program` construction, `Instruction` construction. Abstract factory is implemented in `ArgumentFactory` to perform construction of corresponding class instance according to provided argument type in source code. Singleton is presented as `Executor`  and used to restrict multiple `Executor` instances. Delegation structural pattern is used to delegate execution requests got by instructions to  `Executor` using the corresponding method
+### Internal memory and variables representation
+For easy `IPPcode24` memory management are implemented some additional classes such as `MemoryValue`, `Variable` and `MemoryFrame`.
+#### Memory value
+`MemoryValue` class is representing every single value inside interpreted program, this value representation have information about value type and value itself. This also mainly used to save data on the data stack and perform basic arithmetic operations.  `MemoryValue` always have specified type and value.
+#### Variable
+`Variable` class is representing every single variable inside interpreted program,  this class extends `MemoryValue` class. This representation is supposed to store information about variable such as type, value and current variable state such as initialized or uninitialized, which give as information if we can perform any "read value" operations with variable. After defining variable using `DEFVAR` variable is uninitialized, after first value writing to specified variable it becomes initialized and cant be uninitialized later. Variable initializing can be performed by using `MOVE` or `POPS` instruction.
+#### Memory frame
+`MemoryFrame` class is representing singular frames which stores different variables. Every frame has its own namespace for variables, it means what two different frames can have variables with the same name. Variables are being added to frame during variable definition using `DEFVAR`. In the same time can be accesses max  3 frames, such as `GF`, `TF` and `LF`. `GF` frame is always  accessible in any time, `TF` and `LF` are accessible if they were already defined by corresponding instructions.
+## Steps of interpretation
+### Input code validation
+First of all, input program in XML format goes through several layers syntax of validation. Firstly every input XML is validated by provided `ipp-core`, in case of any errors in basic XML structure interpreter exits with code `31`. The next step is validation according to specified XML format for `IPPcode24`, like input contains only allowed tags and attributes, this step of validation is implemented by using the XSD scheme, which is specified inside of `schema.xsd` file. Some other cases are being validated in runtime.
+### Program construction
+When basic input program requirements was successfully validated input code is parsed. Input program is fully loaded and transformed to internal program representation by using the `ProgramBuilder` which gives as a result a `Program` object. During program building each instruction is transformed to corresponding `Instruction` object by simply using the `InstructionBuilder` and added to internal program instruction flow as a pair of instruction order and instruction object. In case of `LABEL` instruction, corresponding label is added to label map to be able to perform any jumps and calls.
+### Execution
+After successful program construction execution is being started. Execution performs inside the `Executor` class, which contains basic executor logic and corresponding methods for each supported instruction. Basic executor logic is implemented inside the `ExecutorBaseLogicT` trait, instructions are implemented in following traits:
+- `BasicExecutorT` - basic instructions provided by the assignment
+- `FloatExecutorT` - instructions to support float operations
+- `StackExecutorT` - instructions to support stack operations
+- `FloatStackExecutorT` - instructions to support float stack operations
 
-This README describes the basic structure of the project, briefly introduces recommended tools and shows how to set up a suitable development environment.
-Further information can be found in the project specification and in the source code itself.
+Execution is performed by simply using cycle which increments instruction pointer and tries to get instruction with corresponding order. Execution ends by simply getting to the program ending, by using `EXIT` instruction or in case of any runtime error. All program inputs requested by `READ` instruction is obtained from `--input` file or `stdin`, all default outputs, `WRITE` instruction, is printed to `stdout` and all debug info, `DPRINT` and `BREAK` instructions, is printed to `stderr`
+## Extensions
+### FLOAT
+`FLOAT` extension provide some new instructions such as float division, integer to float, float to integer conversion and add functionality for some basic instructions such as arithmetic instructions, read and write instructions. `READ` instruction support reading all default float formats for PHP and `WRITE` instruction prints float using scientific notation using following format `%.10e`.
+### STACK
+`STACK` extension provide new instructions, mostly arithmetic, to perform calculations and other operations on data stack. Stack operations get parameters from stack, stack top is second parameter, result of arithmetic stack operation is pushed back on stack.
+### STATI
+`STATI` extension provide instruments to collect execution statistics and write required statistics to output file. Default `Settings` class was extended to perform `STATI` extension's command line arguments parsing and some additional methods were implemented to collect all specified statistics.
+## UML class diagram
 
-## Basic Structure
-
-The Core of the project guides the execution of the script, handles the processing of exceptions and solves basic I/O operations. The Student part is thus focused primarily on the interpretation of IPPcode24.
-
-The structure of the project is as follows:
-- `core/` - This directory contains all Core classes from the namespace `\IPP\Core`. Files in this directory should not be modified.
-- `student/` - This directory should contain all Student classes, and only its content will be submitted as an archive for evaluation. All Student classes should be in the namespace `\IPP\Student`.
-- `interpret.php` - This file initializes the script environment and serves as an entry point to the object-oriented part of the program. This file should not be modified.
-- other directories and files are related to the tools described later
-
-You should not modify any files from the Core namespace. However, you are free to extend these classes in the Student namespace and modify their behavior. You should study the code of Core classes to see how they work, and how they can be used and extended. For example, see notes in the Engine class.
-
-## About Tools
-
-This is a brief overview of tools recommended for the project. It is not required to install and use every tool mentioned here. 
-
-### Text Editor
-
-Generally, it is possible to use any text editor of your choice.
-However, we highly recommend to use editors that are able to analyze PHP code and assist you with code hints and code completion.
-This is not just useful but almost essential for object-oriented programming that splits code into many separate files.
-
-We can recommend Visual Studio Code (https://code.visualstudio.com/) as a modern text editor which also offers additional useful capabilities such as remote development via SSH or local development in a consistent environment with development containers.
-
-Recommended VS Code extensions:
-- PHP Intelephense - for better PHP analysis and hinting
-- PHP Debug - for PHP debugging with Xdebug
-- Code Spell Checker - for basic spell checking (Czech is also supported as an additional extension)
-- Remote - SSH - for remote development via SSH
-- Dev Containers - for local development in containers
-
-### Composer
-
-Composer (https://getcomposer.org/) is a very popular tool for dependency management in PHP. In this project, we use it very lightly just to define autoloading compliant with PSR-4 (https://www.php-fig.org/psr/psr-4/) and to handle two development dependencies. If we allow any additional libraries, they will be also managed with this tool.
-
-To avoid complications with the installation in different environments, we have included this tool into the project as `composer.phar` that can be run as a regular script in PHP. Additionally, there is `composer.json` that defines autoloading and dependencies and `composer.lock` that holds precise versions of installed libraries.
-
-With the command `install` this tool creates `vendor` directory with required files.
-
-### PHPStan
-
-PHPStan (https://phpstan.org/) is a well-established tool for static analysis of PHP code. It can find errors in your code without actually running it. When set to higher rule levels, it also forces programmers to properly annotate and type hint their code. This is beneficial not just for the static analysis but also for the understandability of your code in general. This is especially true for object-oriented programming, because without types editors are not able to properly assist with code hints and code completion.
-
-In newer versions of PHP, it is possible to write many types natively in the code. However, there are still situations in which types cannot be specified precisely in the native way (such as arrays). In these cases, you can write the precise type as a PHPDoc comment (see https://phpstan.org/user-guide/troubleshooting-types).
-
-The configuration of PHPStan is defined in `phpstan.neon`. You can run the static analysis with the command `vendor/bin/phpstan` (or `php8.3 vendor/bin/phpstan` for Merlin). PHPStan cache is stored in `tmp` directory.
-
-### Docker
-
-Docker (https://www.docker.com/) represents an ecosystem of tools that allow users to run isolated (mostly Linux-based) containers in the large variety of environments. For the purpose of this project, we are interested only with Docker Desktop (https://www.docker.com/products/docker-desktop/) as a prerequisite for Development Containers.
-
-### Development Containers
-
-Development Containers (https://containers.dev/) is an open specification that combines docker containers with text editors to create seamless and consistent full-featured development environments. 
-For VS Code, you can use the following detailed guide: https://code.visualstudio.com/docs/devcontainers/containers.
-
-The configuration of a development container suitable for this project is located in `.devcontainer` directory. There is also a launch configuration for the debug extension in `.vscode` directory.
-
-## Development Environments
-
-There are multiple viable options when it comes to a suitable development environment for this project. Choose one that fits you the most.
-
-### Option 1: Development Container
-
-It is possible to use the prepared development container to do the development locally in an isolated environment.
-Inside the container, VS Code will automatically install all recommended extensions and resolve dependencies. Xdebug will be also ready for use.
-
-Steps for VS Code:
-- follow the installation steps in https://code.visualstudio.com/docs/devcontainers/containers until you have the Dev Containers extension prepared
-- open the project directory in VS Code
-- run the command "Dev Containers: Reopen in Container"
-- you should be now able to use a terminal in VS Code to execute commands in the container
-- run `php interpret.php --help` to try the project execution
-
-### Option 2: Merlin
-
-It is possible to do the whole development on the student server Merlin.
-
-Until recently, it was also possible to easily use the remote development capabilities of VS Code on Merlin. However, VS Code version >= 1.86 now requires glibc >= 2.28, and Merlin does not meet this requirement.
-It is still possible to use the older version of VS Code, but you should use it in a portable mode or disable updates. For more info see:
-https://code.visualstudio.com/docs/remote/faq#_can-i-run-vs-code-server-on-older-linux-distributions
-
-Steps for VS Code 1.85:
-- follow https://code.visualstudio.com/docs/remote/ssh until you successfully connect VS Code and your project directory on Merlin
-- you should be now able to use a terminal in VS Code to execute commands on Merlin
-- run `php8.3 composer.phar install` to install dependencies
-- run `php8.3 interpret.php --help` to try the project execution
-- optionally install other recommended VS Code extensions
-
-### Option 3: Custom
-
-Of course, it is also possible to install PHP directly on your main system or do the development in another custom way. However, in these cases, make sure that the result also works on Merlin. The configuration of PHP can affect the behavior of the script.
+![UML class diagram](./student/UML.svg)
